@@ -1,13 +1,13 @@
 from . import result_fetcher
-import global_vars
+
 from .models import Student, Result, Subject
 
 def add_usn(usn):
     r = result_fetcher.fetch_result(usn)
     # Check if the USN is non-existent
-    if not r:
-        global_vars.bad_usns += 1
-        return
+        
+    if r is None:
+        raise ValueError("USN %s" % usn)
     
     s = Student(usn=r.usn, name=r.name, department=r.department)
     s.save()
@@ -19,3 +19,5 @@ def add_usn(usn):
                         credits_registered=sub.credits_registered,
                         credits_earned=sub.credits_earned, grade=sub.grade)
         subject.save()
+        
+        return None

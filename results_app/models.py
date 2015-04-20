@@ -12,8 +12,8 @@ class Result(models.Model):
     student = models.OneToOneField(Student, primary_key=True)
     credits_registered = models.IntegerField()
     credits_earned = models.IntegerField()
-    sgpa = models.CharField(max_length=5)
-    cgpa = models.CharField(max_length=5)
+    sgpa = models.FloatField()
+    cgpa = models.FloatField()
     def __unicode__(self):
         return str(self.sgpa)
 
