@@ -115,5 +115,4 @@ def fetch_result(usn):
         fs.grade = cols[5].get_text()
         fr.subjects.append(fs)
 
-    return fr
-
+    return fr 
