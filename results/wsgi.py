@@ -12,8 +12,8 @@ import sys
 
 from django.core.wsgi import get_wsgi_application
 
-sys.path.append('/var/www/MSRIT-Results')
-sys.path.append('/var/www/MSRIT-Results/results')
+sys.path.append('/var/www/html/MSRIT-Results')
+sys.path.append('/var/www/html/MSRIT-Results/results')
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "results.settings")
 
