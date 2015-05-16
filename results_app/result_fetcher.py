@@ -49,7 +49,6 @@ def fetch_result(usn):
     
     soup = BeautifulSoup(data)
     sub_tables = soup.find_all("table")
-    
     fr = FetchedResult()
     
     #Check if usn exists
@@ -57,6 +56,7 @@ def fetch_result(usn):
     row = sub_tables[0]
     row_data = row.find_all('td')
     error_message = row_data[7].get_text()
+
     if (error_message.startswith('Oops')):
         return None
 
@@ -79,6 +79,7 @@ def fetch_result(usn):
     # Extracting credits required, sgpa and cgpa
     
     row = sub_tables[7]
+    
     row_data = row.find_all("span")
     fr.credits_registered = int(row_data[1].get_text())
     fr.credits_earned = int(row_data[3].get_text())
