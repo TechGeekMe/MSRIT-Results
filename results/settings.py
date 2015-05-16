@@ -81,7 +81,7 @@ DATABASES = {
         'NAME': 'students',
         'USER': 'root',
         'PASSWORD': '***REMOVED***',
-        'HOST': 'localhost',
+        'HOST': 'resultsdb.cninslv9ojgr.us-west-2.rds.amazonaws.com',
         'PORT': '3306'
     }
 }
