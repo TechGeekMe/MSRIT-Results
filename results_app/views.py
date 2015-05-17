@@ -4,7 +4,7 @@ from django.http import HttpResponse
 
 from .models import Student, Result, Subject
 
-from . import add_result
+from . import result_fetcher
 
 import requests
 
@@ -42,5 +42,5 @@ def clean_db(request):
         
 
 def test(request):
-    return HttpResponse(result_fetcher.fetch_result('1ms13cs137')
     
+    return HttpResponse(result_fetcher.fetch_result('1ms13cs137'))
