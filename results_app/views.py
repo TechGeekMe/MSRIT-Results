@@ -38,5 +38,9 @@ def clean_db(request):
         Student.objects.filter(usn=usn).delete()
     return HttpResponse("Cleaned")
         
-    
+
+def test(request):
+    s = Student(usn='1msdummy', name='dummy', department='dummydep')
+    s.save()
+    return HttpResponse('Test Done!')
     
