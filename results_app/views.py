@@ -42,5 +42,5 @@ def clean_db(request):
         
 
 def test(request):
-    return HttpResponse(result_fetcher.fetch_results('1ms13cs137'))
+    return HttpResponse(result_fetcher.fetch_result('1ms13cs137'))
     
