@@ -47,9 +47,10 @@ def fetch_result(usn):
     # Feed html to BeautifulSoup
     
     soup = BeautifulSoup(data)
+    return data
     sub_tables = soup.find_all("table")
     fr = FetchedResult()
-    return data
+    
     #Check if usn exists
 
     row = sub_tables[0]
