@@ -45,9 +45,9 @@ def fetch_result(usn):
     data = r.text
     
     # Feed html to BeautifulSoup
-    
-    soup = BeautifulSoup(data)
     return data
+
+    soup = BeautifulSoup(data)
     sub_tables = soup.find_all("table")
     fr = FetchedResult()
     
