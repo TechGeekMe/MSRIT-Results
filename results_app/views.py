@@ -6,6 +6,8 @@ from .models import Student, Result, Subject
 
 from . import add_result
 
+from . import result_fetcher
+
 nonexistent_usns = 0
 
 def index(request):
