@@ -4,11 +4,11 @@ import re
 
 class FetchedSubject:
     def __init__(self):
-        self.course_code = 'dummy'
-        self.subject_name = 'dummy'
-        self.credits_registered = 23
-        self.credits_earned = 32
-        self.grade = 'dummy'
+        self.course_code = None
+        self.subject_name = None
+        self.credits_registered = None
+        self.credits_earned = None
+        self.grade = None
     def __unicode__(self):
         return self.course_code + self.subject_name + str(self.credits_registered)\
                + str(self.credits_earned) + self.grade               
@@ -18,13 +18,13 @@ class FetchedSubject:
 
 class FetchedResult():
     def __init__(self):
-        self.usn = 'dummy'
-        self.name = 'dummy'
-        self.department = 'dummy'
-        self.credits_registered = 9
-        self.credits_earned = 10
-        self.sgpa = 8
-        self.cgpa = 7
+        self.usn = None
+        self.name = None
+        self.department = None
+        self.credits_registered = None
+        self.credits_earned = None
+        self.sgpa = None
+        self.cgpa = None
         self.subjects = list()
 
     def __unicode__(self):
@@ -37,10 +37,8 @@ class FetchedResult():
 
 
 def fetch_result(usn):
-    fr = FetchedResult()
-    fs = FetchedSubject()
-    fr.subjects.append(fs)
-    return fr
+    
+    
     #Get html page
     
     payload = {'usn': usn, 'option': 'com_examresult', 'task': 'getResult'}
@@ -51,6 +49,7 @@ def fetch_result(usn):
     
     soup = BeautifulSoup(data)
     sub_tables = soup.find_all("table")
+    fr = FetchedResult()
     
     #Check if usn exists
 
