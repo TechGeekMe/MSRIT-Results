@@ -39,7 +39,7 @@ class FetchedResult():
 def fetch_result(usn):
     fr = FetchedResult()
     fs = FetchedSubject()
-    fr.subject.append(fs)
+    fr.subjects.append(fs)
     return fr
     #Get html page
     
