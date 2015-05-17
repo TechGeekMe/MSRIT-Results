@@ -38,7 +38,6 @@ class FetchedResult():
 
 def fetch_result(usn):
     
-    
     #Get html page
     
     payload = {'usn': usn, 'option': 'com_examresult', 'task': 'getResult'}
@@ -83,19 +82,19 @@ def fetch_result(usn):
     row_data = row.find_all("span")
     fr.credits_registered = int(row_data[1].get_text())
     fr.credits_earned = int(row_data[3].get_text())
-    
     fr.sgpa = row_data[5].get_text()
+    
     # Checking SGPA for TAL to convert to float
     if fr.sgpa == "TAL":
         fr.sgpa = "0"
     fr.sgpa = float(fr.sgpa)
     
     fr.cgpa = row_data[7].get_text()
+    
     # Checking CGPA for TAL to convert to float
     if fr.cgpa == "TAL":
         fr.cgpa = "0"
     fr.cgpa = float(fr.cgpa)
-    
 
     # Extracting result of each of subject
     
@@ -115,5 +114,5 @@ def fetch_result(usn):
         fs.credits_earned = int(cols[4].get_text())
         fs.grade = cols[5].get_text()
         fr.subjects.append(fs)
-
+        
     return fr 

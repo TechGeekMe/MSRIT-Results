@@ -40,8 +40,5 @@ def clean_db(request):
         
 
 def test(request):
-    for i in range(10):
-        s = Student(usn='1msdummy'+str(i), name='dummy'+str(i), department='dummydep'+str(i))
-        s.save()
-    return HttpResponse('Test Done!')
+    return HttpResponse(result_fetcher.fetch_results('1ms13cs137'))
     
