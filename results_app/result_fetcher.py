@@ -43,13 +43,13 @@ def fetch_result(usn):
     payload = {'usn': usn, 'option': 'com_examresult', 'task': 'getResult'}
     r = requests.post("http://exam.msrit.edu/index.php", data=payload)
     data = r.text
-    return data
+    
     # Feed html to BeautifulSoup
     
     soup = BeautifulSoup(data)
     sub_tables = soup.find_all("table")
     fr = FetchedResult()
-    
+    return data
     #Check if usn exists
 
     row = sub_tables[0]
