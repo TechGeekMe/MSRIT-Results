@@ -8,6 +8,8 @@ from . import result_fetcher
 
 import requests
 
+from bs4 import BeautifulSoup
+
 nonexistent_usns = 0
 
 def index(request):
@@ -42,5 +44,5 @@ def clean_db(request):
         
 
 def test(request):
-    
+    soup = BeautifulSoup('tazo')
     return HttpResponse(result_fetcher.fetch_result('1ms13cs137'))
