@@ -4,7 +4,7 @@ from django.http import HttpResponse
 
 from .models import Student, Result, Subject
 
-from . import result_fetcher
+from . import add_result
 
 nonexistent_usns = 0
 
@@ -24,23 +24,7 @@ def update_db(request, usn_base, first_usn, last_usn):
             bad_usns = 0
             continue
         try:
-            r = result_fetcher.fetch_result(usn)
-            # Check if the USN is non-existent
-                
-            if r is None:
-                raise ValueError("USN %s" % usn)
-
-            s = Student(usn=r.usn, name=r.name, department=r.department)
-            s.save()
-            result = Result(student=s, credits_registered=r.credits_registered, credits_earned=r.credits_earned, sgpa=r.sgpa, cgpa=r.cgpa)
-            result.save()
-            
-            for sub in r.subjects:
-                subject = Subject(result=result, course_code=sub.course_code, subject_name=sub.subject_name,
-                                credits_registered=sub.credits_registered,
-                                credits_earned=sub.credits_earned, grade=sub.grade)
-                subject.save()
-
+            add_result.add_usn(usn)
             bad_usns = 0
         except ValueError:
             bad_usns += 1
