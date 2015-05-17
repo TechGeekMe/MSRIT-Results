@@ -36,6 +36,7 @@ def clean_db(request):
     for i in range(1, 138):
         usn = usn_base + str(i).zfill(3)
         Student.objects.filter(usn=usn).delete()
+    return HttpResponse("Cleaned")
         
     
     
