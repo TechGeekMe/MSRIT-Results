@@ -42,7 +42,5 @@ def clean_db(request):
         
 
 def test(request):
-    payload = {'usn': '1ms13cs137', 'option': 'com_examresult', 'task': 'getResult'}
-    r = requests.post("http://exam.msrit.edu/index.php", data=payload)
-    return HttpResponse(r.text)
+    return HttpResponse(result_fetcher.fetch_result('1ms13cs137')
     
