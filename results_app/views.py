@@ -32,7 +32,7 @@ def update_db(request, usn_base, first_usn, last_usn):
     return HttpResponse("Complete! Stopped at" + str(usn))
 
 def clean_db(request):
-    usn_base = "1ms13is"
+    usn_base = "1MS13IS"
     for i in range(1, 138):
         usn = usn_base + str(i).zfill(3)
         Student.objects.filter(usn=usn).delete()
