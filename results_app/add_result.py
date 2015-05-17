@@ -16,7 +16,7 @@ def add_usn(usn):
     result.save()
     
     for sub in r.subjects:
-        subject=Subject(result=result, course_code=sub.course_code, subject_name=sub.subject_name,
+        subject = Subject(result=result, course_code=sub.course_code, subject_name=sub.subject_name,
                         credits_registered=sub.credits_registered,
                         credits_earned=sub.credits_earned, grade=sub.grade)
         subject.save()
