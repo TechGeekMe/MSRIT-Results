@@ -5,8 +5,8 @@ from .models import Student, Result, Subject
 def add_usn(usn):
     
     r = result_fetcher.fetch_result(usn)
+    
     # Check if the USN is non-existent
-        
     if r is None:
         raise ValueError("USN %s" % usn)
 
