@@ -43,7 +43,7 @@ def clean_db(request):
     return HttpResponse("Cleaned")
         
 
-def update_db(request, year):
+def pull(request, year):
     branches = ['CS', 'IS', 'IT', 'IM', 'EC', 'CV', 'ME', 'TE', 'CH', 'BT', 'EE', 'ML']
     for branch in branches:
         update_db(request, '1MS'+year+branch, 0, 300)
