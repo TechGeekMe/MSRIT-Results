@@ -4,7 +4,7 @@ from django.http import HttpResponse
 
 from .models import Student, Result, Subject
 
-from . import result_fetcher
+from . import add_result
 
 import requests
 
