@@ -45,7 +45,7 @@ def clean_db(request):
 
 def update_db(request, year):
     branches = ['CS', 'IS', 'IT', 'IM', 'EC', 'CV', 'ME', 'TE', 'CH', 'BT', 'EE', 'ML']
-    for branch in braches:
+    for branch in branches:
         update_db(request, '1MS'+year+branch, 0, 300)
         
     return HttpResponse("Success!")
