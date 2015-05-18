@@ -43,6 +43,9 @@ def clean_db(request):
     return HttpResponse("Cleaned")
         
 
-def test(request):
-    soup = BeautifulSoup('tazo')
-    return HttpResponse('hi')
+def update_db(request, year):
+    branches = ['CS', 'IS', 'IT', 'IM', 'EC', 'CV', 'ME', 'TE', 'CH', 'BT', 'EE', 'ML']
+    for branch in braches:
+        update_db(request, '1MS'+year+branch, 0, 300)
+        
+    return HttpResponse("Success!")
