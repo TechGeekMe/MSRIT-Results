@@ -47,5 +47,10 @@ def pull(request, year):
     branches = ['CS', 'IS', 'IT', 'IM', 'EC', 'CV', 'ME', 'TE', 'CH', 'BT', 'EE', 'ML']
     for branch in branches:
         update_db(request, '1MS'+year+branch, 0, 300)
+
+def pull_dip(request, year):
+    branches = ['CS', 'IS', 'IT', 'IM', 'EC', 'CV', 'ME', 'TE', 'CH', 'BT', 'EE', 'ML']
+    for branch in branches:
+        update_db(request, '1MS'+year+branch, 400, 500)
         
     return HttpResponse("Success!")
