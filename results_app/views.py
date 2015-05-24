@@ -36,7 +36,7 @@ def update_db(request, usn_base, first_usn, last_usn):
     return HttpResponse("Complete! Stopped at" + str(usn))
 
 def clean_db(request):
-    lastSeenId = ''
+    lastSeenUsn = ''
     rows = Student.objects.all().order_by('usn')
     for row in rows:
       if row.usn == lastSeenUsn:
