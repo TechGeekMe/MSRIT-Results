@@ -2,6 +2,4 @@ db.sqlite3
 
 *.pyc
 
-results_app/result_fetcher.pyc
-
-results_app/views.pyc
+results_app/*.pyc
