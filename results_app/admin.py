@@ -9,7 +9,7 @@ class SubjectInline(admin.StackedInline):
     model = Subject
     
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ('usn', 'name', 'department')
+    list_display = ('usn', 'name', 'department', 'semester')
     inlines = [ResultInline]
     search_fields = ['name']
 
