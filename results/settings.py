@@ -116,7 +116,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 
-AWS_STORAGE_BUCKET_NAME = 'kideinstein'
+AWS_STORAGE_BUCKET_NAME = 'msrit-results'
 AWS_ACCESS_KEY_ID = '***REMOVED***'
 AWS_SECRET_ACCESS_KEY = '***REMOVED***'
 
