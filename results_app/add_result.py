@@ -12,7 +12,7 @@ def add_usn(usn):
 
     s = Student(usn=r.usn, name=r.name, department=r.department)
     s.save()
-    result = Result(student=s, credits_registered=r.credits_registered, credits_earned=r.credits_earned, sgpa=r.sgpa, cgpa=r.cgpa)
+    result = Result(student=s, credits_registered=r.credits_registered, credits_earned=r.credits_earned, sgpa=r.sgpa, cgpa=r.cgpa, semester=r.semester)
     result.save()
     
     for sub in r.subjects:

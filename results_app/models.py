@@ -1,7 +1,7 @@
 from django.db import models
 
 class Student(models.Model):
-    usn = models.CharField(max_length=15)
+    usn = models.CharField(max_length=15, primary_key=True)
     name = models.CharField(max_length=50)
     department= models.CharField(max_length=50)
     def __unicode__(self):
@@ -9,11 +9,12 @@ class Student(models.Model):
         
 
 class Result(models.Model):
-    student = models.OneToOneField(Student, primary_key=True)
+    student = models.ForeignKey(Student)
     credits_registered = models.IntegerField()
     credits_earned = models.IntegerField()
     sgpa = models.FloatField()
     cgpa = models.FloatField()
+    semester = models.IntegerField()
     def __unicode__(self):
         return str(self.sgpa)
 
