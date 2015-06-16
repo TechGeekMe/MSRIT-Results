@@ -11,10 +11,20 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Student',
+            name='Result',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('usn', models.CharField(max_length=15)),
+                ('credits_registered', models.IntegerField()),
+                ('credits_earned', models.IntegerField()),
+                ('sgpa', models.FloatField()),
+                ('cgpa', models.FloatField()),
+                ('semester', models.IntegerField()),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Student',
+            fields=[
+                ('usn', models.CharField(max_length=15, serialize=False, primary_key=True)),
                 ('name', models.CharField(max_length=50)),
                 ('department', models.CharField(max_length=50)),
             ],
@@ -28,21 +38,12 @@ class Migration(migrations.Migration):
                 ('credits_registered', models.IntegerField()),
                 ('credits_earned', models.IntegerField()),
                 ('grade', models.CharField(max_length=5)),
-            ],
-        ),
-        migrations.CreateModel(
-            name='Result',
-            fields=[
-                ('student', models.OneToOneField(primary_key=True, serialize=False, to='results_app.Student')),
-                ('credits_registered', models.IntegerField()),
-                ('credits_earned', models.IntegerField()),
-                ('sgpa', models.FloatField()),
-                ('cgpa', models.FloatField()),
+                ('result', models.ForeignKey(to='results_app.Result')),
             ],
         ),
         migrations.AddField(
-            model_name='subject',
-            name='result',
-            field=models.ForeignKey(to='results_app.Result'),
+            model_name='result',
+            name='student',
+            field=models.ForeignKey(to='results_app.Student'),
         ),
     ]

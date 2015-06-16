@@ -25,11 +25,12 @@ class FetchedResult():
         self.credits_earned = None
         self.sgpa = None
         self.cgpa = None
+        self.semester = None
         self.subjects = list()
 
     def __unicode__(self):
         return self.usn + self.name + self.department + str(self.credits_registered)\
-               + str(self.credits_earned) + str(self.sgpa) + str(self.cgpa)
+               + str(self.credits_earned) + str(self.sgpa) + str(self.cgpa) + str(self.semester)
                
     def __str__(self):        
         return unicode(self).encode('utf-8')
@@ -97,11 +98,12 @@ def fetch_result(usn):
     fr.cgpa = float(fr.cgpa)
 
     # Extracting result of each of subject
-    
-    firstIteration = True
+
+    subject_sem = {}
+    first_iteration = True
     for row in sub_tables[10].find_all('tr'):
-        if firstIteration:
-            firstIteration = False
+        if first_iteration:
+            first_iteration = False
             continue
         cols = row.find_all('td')
         # Detect last row
@@ -109,10 +111,14 @@ def fetch_result(usn):
             break;
         fs = FetchedSubject()
         fs.course_code = cols[1].get_text()
+        sem = int(re.match(r'[A-Z]+\d', fs.course_code).group()[-1])
+        subject_sem[sem] = subject_sem.get(sem, 0) + 1
         fs.subject_name = cols[2].get_text()
         fs.credits_registered = int(float(cols[3].get_text()))
         fs.credits_earned = int(cols[4].get_text())
         fs.grade = cols[5].get_text()
         fr.subjects.append(fs)
-        
+
+    fr.semester = max(subject_sem, key=subject_sem.get)
+    
     return fr 
