@@ -1,0 +1,11 @@
+<html>
+<head>
+	<title>MSRIT Results</title>
+</head>
+<body>
+	<ul>
+	{% for student in students %}
+		<li><a href="{% url 'results_app:student_details' student.usn %}">{{ student.name }}</a></li>
+	{% endfor %}
+	</ul>
+</body>

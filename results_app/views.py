@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse
+
+from django.core.urlresolvers import reverse
 
 from .models import Student, Result, Subject
 
@@ -13,7 +15,7 @@ from bs4 import BeautifulSoup
 nonexistent_usns = 0
 
 def index(request):
-    return HttpResponse("Hi")
+    return render(request, 'results_app/index.html')
 
 def update_db(request, usn_base, first_usn, last_usn):
     bad_usns = 0
@@ -56,3 +58,18 @@ def pull_dip(request, year):
         update_db(request, '1MS'+year+branch, 400, 500)
         
     return HttpResponse("Success!")
+
+def student_name_list(request):
+    #add redirect for no name match found
+    name = request.POST['student_name']
+    students = Student.objects.filter(name__icontains=name)
+    if students.count() == 1:
+        return HttpResponseRedirect(reverse('results_app:student_details', args=(students[0].usn,)))
+    else:
+        return render(request, 'results_app/student_name_list.html', {'students': students})
+
+def student_details(request, usn):
+    student = get_object_or_404(Student, pk=usn)
+    return render(request, 'results_app/student_details.html', {'student': student}) 
+        
+
