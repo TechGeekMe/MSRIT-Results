@@ -1,0 +1,11 @@
+<html>
+<head>
+	<title>MSRIT Results</title>
+</head>
+<body>
+	<form action="{% url 'results_app:student_name_list' %}" method="post">
+		{% csrf_token %}
+		<label>Enter name: <input type="text", name="student_name" /></label>
+	</form>
+</body>
+</html>
