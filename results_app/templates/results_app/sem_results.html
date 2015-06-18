@@ -1,0 +1,11 @@
+<html>
+<head>
+	<title>MSRIT Results</title>
+</head>
+<body>
+	<ul>
+		{% for result in results %}
+			<li>{{ result.student.name }}</li>
+		{% endfor %}
+	</ul>
+</body>
