@@ -64,12 +64,16 @@ def student_name_list(request):
     name = request.POST['student_name']
     students = Student.objects.filter(name__icontains=name)
     if students.count() == 1:
-        return HttpResponseRedirect(reverse('results_app:student_details', args=(students[0].usn,)))
+        return HttpResponseRedirect(reverse('results_app:student_result', args=(students[0].usn,)))
     else:
         return render(request, 'results_app/student_name_list.html', {'students': students})
 
-def student_details(request, usn):
+def student_result(request, usn):
     student = get_object_or_404(Student, pk=usn)
-    return render(request, 'results_app/student_details.html', {'student': student}) 
+    return render(request, 'results_app/student_result.html', {'student': student}) 
         
-
+def sem_results(request):
+    sem = request.POST['semester']
+    branch = request.POST['branch']
+    results = Result.objects.filter(student__pk__startswith='1ms13'+branch, semester=sem)
+    return render(request, 'results_app/sem_results.html', {'results': results})
