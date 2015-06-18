@@ -1,6 +1,6 @@
 from fabric.api import local, settings, abort, run, cd, env
 
-env.hosts = ['ec2-52-25-23-160.us-west-2.compute.amazonaws.com']
+env.hosts = ['52.10.173.250']
 env.user = 'ec2-user'
 env.key_filename = '/Users/anirudh/Documents/Python-Projects/Results/key.pem'
 
@@ -11,8 +11,8 @@ def prepare_deploy(message='fab push'):
 def deploy():
     code_dir = '/var/www/html/MSRIT-Results/'
     with cd(code_dir):
-        run('git pull')
+        run('sudo git pull')
         with cd(code_dir+'results'):
-            run('touch wsgi.py')
+            run('sudo touch wsgi.py')
         
         
