@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^pull_dip/(?P<year>\d{2})/$', views.pull_dip, name='pull_dip'),
     url(r'^$', views.index, name='index'),
     url(r'^clean_db$', views.clean_db, name='clean_db'),
-    url(r'^student_details/(?P<usn>.*)/$', views.student_details,  name='student_details'),
-    url(r'^student_name_list$', views.student_name_list,  name='student_name_list')
+    url(r'^student_result/(?P<usn>.*)/$', views.student_result,  name='student_result'),
+    url(r'^student_name_list$', views.student_name_list,  name='student_name_list'),
+    url(r'^sem_results$', views.sem_results,  name='sem_results')
 ]

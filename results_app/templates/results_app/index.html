@@ -6,6 +6,39 @@
 	<form action="{% url 'results_app:student_name_list' %}" method="post">
 		{% csrf_token %}
 		<label>Enter name: <input type="text", name="student_name" /></label>
+		<br />
+		<button type="submit">Go</button>
 	</form>
+	<form action="{% url 'results_app:sem_results' %}" method="post">
+		{% csrf_token %}
+		Semester-wise results<br />Enter Semester:
+		<label><input type="radio" name="semester" value="1" />1</label>
+		<label><input type="radio" name="semester" value="2" />2</label>
+		<label><input type="radio" name="semester" value="3" />3</label>
+		<label><input type="radio" name="semester" value="4" />4</label>
+		<label><input type="radio" name="semester" value="5" />5</label>
+		<label><input type="radio" name="semester" value="6" />6</label>
+		<label><input type="radio" name="semester" value="7" />7</label>
+		<label><input type="radio" name="semester" value="8" />8</label>
+		<br />
+		Enter Branch:
+		<label><input type="radio" name="branch" value="cs" />CS</label>
+		<label><input type="radio" name="branch" value="is" />IS</label>
+		<label><input type="radio" name="branch" value="it" />IT</label>
+		<label><input type="radio" name="branch" value="im" />IM</label>
+		<label><input type="radio" name="branch" value="ec" />EC</label>
+		<label><input type="radio" name="branch" value="cv" />CV</label>
+		<label><input type="radio" name="branch" value="me" />ME</label>
+		<label><input type="radio" name="branch" value="te" />TE</label>
+		<label><input type="radio" name="branch" value="ch" />CH</label>
+		<label><input type="radio" name="branch" value="bt" />BT</label>
+		<label><input type="radio" name="branch" value="ee" />EE</label>
+		<label><input type="radio" name="branch" value="ml" />ML</label>
+		<br />
+		<button type="submit">Go</button>
+	</form>
+
+
+
 </body>
 </html>
