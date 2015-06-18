@@ -1,5 +1,7 @@
-def prepare_deploy():
-    local('git add . && git commit')
+from fabric.api import local, settings, abort, run, cd
+
+def prepare_deploy(message):
+    local('git add . && git commit'+" -m '"+message+"'")
     local('git push')
 
 def deploy():
@@ -8,4 +10,5 @@ def deploy():
         run('git pull')
         with cd(code_dir+'results'):
             run('touch wsgi.py')
+        
         
