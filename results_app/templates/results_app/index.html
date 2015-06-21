@@ -75,6 +75,7 @@
                     <div class="panel-body">
                         <form role="form" class="form-horizontal" action="{% url 'results_app:sem_results' %}" method="post">
                             {% csrf_token %}
+                            <input type="hidden" name="sort" value="sgpa">
                             <div class="form-group">
                                 <label for="semesters" class="control-label col-xs-3">Semester:</label>
                                 <div class="btn-group" data-toggle="buttons" id="semesters">
@@ -84,7 +85,7 @@
                                     <label class="btn btn-primary">
                                         <input type="radio" name="semester" id="2" value="2" />2
                                     </label>
-                                    <label class="btn btn-primary disabled">
+                                    <label class="btn btn-primary">
                                         <input type="radio" name="semester" id="3" value="3" />3
                                     </label>
                                     <label class="btn btn-primary">
@@ -171,7 +172,7 @@
             </div>
         </div>
     </div>
-    <script src="Scripts/jquery-2.1.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 </html>
