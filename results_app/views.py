@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 
 from django.core.urlresolvers import reverse
 
-from .models import Student, Result, Subject
+from .models import Student, Result, Subject, SubjectList
 
 from . import add_result
 
@@ -92,3 +92,5 @@ def sem_results(request):
     if sort == 'cgpa':
         results = results.order_by('-cgpa')
     return render(request, 'results_app/sem_results.html', {'results': results, 'semester': sem, 'branch': branch, 'sort': sort})
+
+        
