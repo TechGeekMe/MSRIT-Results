@@ -59,7 +59,7 @@ def pull_dip(request, year):
         
     return HttpResponse("Success!")
 
-def student_name_list(request):
+def name_search(request):
     #add redirect for no name match found
     name = request.POST['student_name']
     students = Student.objects.filter(name__icontains=name)
@@ -71,6 +71,15 @@ def student_name_list(request):
 def student_result(request, usn):
     student = get_object_or_404(Student, pk=usn)
     return render(request, 'results_app/student_result.html', {'student': student}) 
+    
+def student_name_list(request):
+    #add redirect for no name match found
+    name = request.POST['student_name']
+    students = Student.objects.filter(name__icontains=name)
+    if students.count() == 1:
+        return HttpResponseRedirect(reverse('results_app:student_result', args=(students[0].usn,)))
+    else:
+        return render(request, 'results_app/student_name_list.html', {'students': students}) 
         
 def sem_results(request):
     sem = request.POST['semester']
