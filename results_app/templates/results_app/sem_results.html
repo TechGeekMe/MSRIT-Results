@@ -4,7 +4,18 @@
 <meta charset="utf-8"/>
 	<title>MSRIT Results</title>
 </head>
-<body>
+<body onload="document.getElementById('{{ sort }}').selected=true;">
+	<form action="{% url 'results_app:sem_results' %}" method="post">
+		{% csrf_token %}
+		<select name="sort" onchange="this.form.submit()">
+			<option value="name" id="name">Name</option>
+			<option value="sgpa" id="sgpa">SGPA</option>
+			<option value="cgpa" id="cgpa">CGPA</option>
+		</select>
+		<input type="hidden" name="semester" value={{ semester }}>
+		<input type="hidden" name="branch" value={{ branch }}>
+		
+	</form>
 	<ul>
 		{% for result in results %}
 			<li>{{ result.student.name }}</li>
