@@ -65,7 +65,8 @@ def student_result(request, usn):
     return render(request, 'results_app/student_result.html', {'student': student})
 
 def usn_search(request):
-    student = get_object_or_404(Student, pk=request.POST['usn'])
+    usn = request.POST['usn']
+    student = get_object_or_404(Student, pk=usn)
     return render(request, 'results_app/student_result.html', {'student': student}) 
 
     
