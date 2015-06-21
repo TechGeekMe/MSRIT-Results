@@ -25,7 +25,7 @@
                         <form role="form" class="form-horizontal" action="{% url 'results_app:usn_search' %}" method="post">
                             {% csrf_token %}
                             <div class="form-group">
-                                <div class="col-sm-6 col-sm-offset-3 input-group">
+                                <div class="col-xs-offset-1 col-xs-10 col-sm-6 col-sm-offset-3 input-group">
                                     <span class="input-group-addon">1MS</span>
                                     <input type="text" class="form-control" id="usn" placeholder="USN" name="usn" style="text-transform: uppercase;" />
                                 </div>
@@ -49,7 +49,7 @@
                         <form role="form" class="form-horizontal" action="{% url 'results_app:student_name_list' %}" method="post">
                             {% csrf_token %}
                             <div class="form-group">
-                                <div class="col-sm-6 col-sm-offset-3 input-group  input-group">
+                                <div class="col-xs-offset-1 col-xs-10 col-sm-6 col-sm-offset-3 input-group  input-group">
                                     <div class="input-group-addon">
                                         <span class="glyphicon glyphicon-user"></span>
                                     </div>
@@ -109,40 +109,40 @@
                                 <label for="branch" class="control-label col-xs-3">Branch:</label>
                                 <div class="container-fluid">
                                     <div class="btn-group" data-toggle="buttons" id="branch">
-                                        <label class="btn btn-primary">
+                                        <label class="btn btn-primary col-xs-3 col-sm-2">
                                             <input type="radio" name="branch" id="cs" value="cs" />CSE
                                         </label>
-                                        <label class="btn btn-primary">
+                                        <label class="btn btn-primary col-xs-3 col-sm-2">
                                             <input type="radio" name="branch" id="is" value="is" />ISE
                                         </label>
-                                        <label class="btn btn-primary">
+                                        <label class="btn btn-primary col-xs-3 col-sm-2">
                                             <input type="radio" name="branch" id="ec" value="ec" />EC
                                         </label>
-                                        <label class="btn btn-primary">
+                                        <label class="btn btn-primary col-xs-3 col-sm-2">
                                             <input type="radio" name="branch" id="me" value="me" />MECH
                                         </label>
-                                        <label class="btn btn-primary">
+                                        <label class="btn btn-primary col-xs-3 col-sm-2">
                                             <input type="radio" name="branch" id="ee" value="ee" />EEE
                                         </label>
-                                        <label class="btn btn-primary">
+                                        <label class="btn btn-primary col-xs-3 col-sm-2">
                                             <input type="radio" name="branch" id="cv" value="cv" />CIVIL
                                         </label>
-                                        <label class="btn btn-primary">
+                                        <label class="btn btn-primary col-xs-3 col-sm-2">
                                             <input type="radio" name="branch" id="tc" value="tc" />TC
                                         </label>
-                                        <label class="btn btn-primary">
+                                        <label class="btn btn-primary col-xs-3 col-sm-2">
                                             <input type="radio" name="branch" id="it" value="it" />IT
                                         </label>
-                                        <label class="btn btn-primary">
+                                        <label class="btn btn-primary col-xs-3 col-sm-2">
                                             <input type="radio" name="branch" id="im" value="im" />IEM
                                         </label>
-                                        <label class="btn btn-primary">
+                                        <label class="btn btn-primary col-xs-3 col-sm-2">
                                             <input type="radio" name="branch" id="ch" value="ch" />CHEM
                                         </label>
-                                        <label class="btn btn-primary">
+                                        <label class="btn btn-primary col-xs-3 col-sm-2">
                                             <input type="radio" name="branch" id="ml" value="ml" />ML
                                         </label>
-                                        <label class="btn btn-primary">
+                                        <label class="btn btn-primary col-xs-3 col-sm-2">
                                             <input type="radio" name="branch" id="bt" value="bt" />BT
                                         </label>
                                     </div>
