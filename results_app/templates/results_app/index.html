@@ -24,14 +24,14 @@
                         <form role="form" class="form-horizontal" action="{% url 'results_app:usn_search' %}" method="post">
                             {% csrf_token %}
                             <div class="form-group">
-                                <label for="USN" class="control-label col-xs-3">USN:</label>
-                                <div class="col-xs-6 input-group">
+                                <label for="USN" class="control-label col-sm-3">USN:</label>
+                                <div class="col-sm-6 input-group">
                                     <span class="input-group-addon">1MS</span>
                                     <input type="text" class="form-control" id="usn" placeholder="USN" name="usn" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success col-xs-6 col-xs-offset-3">Search</button>
+                                <button type="submit" class="btn btn-success col-sm-6 col-sm-offset-3">Search</button>
                             </div>
                         </form>
                     </div>
@@ -49,16 +49,16 @@
                         <form role="form" class="form-horizontal" action="{% url 'results_app:student_name_list' %}" method="post">
                             {% csrf_token %}
                             <div class="form-group">
-                                <label for="Name" class="control-label col-xs-3">Name:</label>
-                                <div class="col-xs-6  input-group">
+                                <label for="Name" class="control-label col-sm-3">Name:</label>
+                                <div class="col-sm-6  input-group">
                                     <div class="input-group-addon">
                                         <span class="glyphicon glyphicon-user"></span>
                                     </div>
-                                    <input type="text" class="form-control col-xs-6" id="student_name" placeholder="Name" name="student_name" />
+                                    <input type="text" class="form-control col-sm-6" id="student_name" placeholder="Name" name="student_name" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success col-xs-6 col-xs-offset-3">Search</button>
+                                <button type="submit" class="btn btn-success col-sm-6 col-sm-offset-3">Search</button>
                             </div>
                         </form>
                     </div>
@@ -77,7 +77,7 @@
                             {% csrf_token %}
                             <input type="hidden" name="sort" value="sgpa">
                             <div class="form-group">
-                                <label for="semesters" class="control-label col-xs-3">Semester:</label>
+                                <label for="semesters" class="control-label col-sm-3">Semester:</label>
                                 <div class="btn-group" data-toggle="buttons" id="semesters">
                                     <label class="btn btn-primary disabled">
                                         <input type="radio" name="semester" id="1" value="1" />1
@@ -107,7 +107,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="branch" class="control-label col-xs-3">Branch:</label>
+                                <label for="branch" class="control-label col-sm-3">Branch:</label>
                                 <div class="container-fluid">
                                     <div class="btn-group" data-toggle="buttons" id="branch">
                                         <label class="btn btn-primary">
@@ -151,7 +151,7 @@
                             </div>
 
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success col-xs-6 col-xs-offset-3">Search</button>
+                                <button type="submit" class="btn btn-success col-sm-6 col-sm-offset-3">Search</button>
                             </div>
                         </form>
                     </div>
