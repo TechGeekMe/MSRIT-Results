@@ -25,8 +25,7 @@
                         <form role="form" class="form-horizontal" action="{% url 'results_app:usn_search' %}" method="post">
                             {% csrf_token %}
                             <div class="form-group">
-                                <label for="USN" class="control-label col-xs-3">USN:</label>
-                                <div class="col-xs-6 input-group">
+                                <div class="col-sm-6 col-sm-offset-3 input-group">
                                     <span class="input-group-addon">1MS</span>
                                     <input type="text" class="form-control" id="usn" placeholder="USN" name="usn" style="text-transform: uppercase;" />
                                 </div>
@@ -50,8 +49,7 @@
                         <form role="form" class="form-horizontal" action="{% url 'results_app:student_name_list' %}" method="post">
                             {% csrf_token %}
                             <div class="form-group">
-                                <label for="Name" class="control-label col-xs-3">Name:</label>
-                                <div class="col-xs-6  input-group">
+                                <div class="col-sm-6 col-sm-offset-3 input-group  input-group">
                                     <div class="input-group-addon">
                                         <span class="glyphicon glyphicon-user"></span>
                                     </div>
