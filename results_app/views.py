@@ -97,7 +97,7 @@ def get_subjects(request, semester, branch):
     subjects = SubjectList.objects.filter(course_code__regex=r'%s[A-Z]*%s.*' % (branch, semester))
     resp = ''
     for subject in subjects:
-        resp += "<li><a href=\"%s\">%s</a></li>" % (reverse('results_app:subject_results', args=(subject.course_code,)), subject.subject_name)
+        resp += "<option name=\"course_code\" value=\"%s\">%s</option>"% (subject.course_code, subject.subject_name)
     return HttpResponse(resp)
 
 def subject_results(request, course_code):

@@ -194,25 +194,16 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="dropdownMenu1" <div class="dropdown  col-xs-4 col-xs-offset-4">
-                                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="true">Subject
-                                            <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="subject-dropdown">
-                                            <li>
-                                                <a href="#">Action</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Another action</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Something else here</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Separated link</a>
-                                            </li>
-                                        </ul>
+                                      <label class="control-label col-xs-3" for="subject-list">Subject:</label>
+                                      <div class="col-xs-5 col-xs-offset-1">
+                                      <select class="form-control" id="subject-list">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                      </select>
+                                      </div>
+                                        
                                 </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-success col-xs-4 col-xs-offset-4 col-sm-2 col-sm-offset-5">Search</button>
@@ -238,7 +229,7 @@
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
+                                        <ul class="nav navbar-nav">
                         <li class="active"><a href="http://results.techgeekme.com">Results</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -253,7 +244,7 @@
                                     <a href="https://about.me/shoaib30" target="_blank">
                                         <img src="https://scontent-hkg3-1.xx.fbcdn.net/hphotos-xpa1/t31.0-8/s960x960/10514297_10153395827649358_6512994802202482637_o.jpg" width="200px" height="200px" />
                                         Shoaib Ahmed
-                                    </a>
+                                </a>
                                 </li>
                             </ul>
                         </li>
@@ -269,7 +260,7 @@
             $(document).ready(function(){
                 $(":radio").change(function(){
                     $.ajax({url: "{% url 'results_app:get_subjects' semester='8' branch='CS' %}", success: function(result){
-                        $("#subject-dropdown").html(result);
+                        $("#subject-list").html(result);
                 }});
                     });
             });
