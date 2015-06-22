@@ -11,5 +11,7 @@ urlpatterns = [
     url(r'^student_result/(?P<usn>.*)/$', views.student_result,  name='student_result'),
     url(r'^student_name_list$', views.student_name_list,  name='student_name_list'),
     url(r'^sem_results$', views.sem_results,  name='sem_results'),
-    url(r'^usn_search$', views.usn_search,  name='usn_search')
+    url(r'^usn_search$', views.usn_search,  name='usn_search'),
+    url(r'^get_subjects/(?P<semester>\d)/(?P<branch>.*)/$', views.get_subjects, name='get_subjects'),
+    url(r'^subject_results/(?P<course_code>.*)/$', views.subject_results, name='subject_results'),
 ]
