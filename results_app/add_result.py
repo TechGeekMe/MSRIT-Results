@@ -1,6 +1,6 @@
 from . import result_fetcher
 
-from .models import Student, Result, Subject
+from .models import Student, Result, Subject, SubjectList
 
 def add_usn(usn):
     
@@ -20,3 +20,6 @@ def add_usn(usn):
                         credits_registered=sub.credits_registered,
                         credits_earned=sub.credits_earned, grade=sub.grade)
         subject.save()
+        if not SubjectList.objects.filter(pk=sub.course_code).exists():
+            subjectlist = SubjectList(course_code = sub.course_code, subject_name=sub.subject_name, branch_code=r.usn[5:7], semester=r.semester)
+            subjectlist.save()

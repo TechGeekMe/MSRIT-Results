@@ -82,8 +82,8 @@ def student_name_list(request):
 
 def sem_results(request):
     sem = request.POST['semester']
-    branch = request.POST['branch']
-    results = Result.objects.filter(student__pk__startswith='1ms13'+branch, semester=sem)
+    branch = request.POST['branch'].upper()
+    results = Result.objects.filter(student__pk__regex=r'1MS\d\d%s*' % branch, semester=sem)
     sort = request.POST['sort']
     if sort == 'name':
         results.order_by('student__name')
@@ -92,3 +92,4 @@ def sem_results(request):
     if sort == 'cgpa':
         results = results.order_by('-cgpa')
     return render(request, 'results_app/sem_results.html', {'results': results, 'semester': sem, 'branch': branch, 'sort': sort})
+    
