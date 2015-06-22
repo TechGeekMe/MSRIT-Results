@@ -255,10 +255,21 @@
         <script>
             $(document).ready(function(){
                 $("input[name=branch2]").change(function(){
-                    $.ajax({url: "{% url 'results_app:get_subjects' %}", type: "POST", data: {csrfmiddlewaretoken: "{{csrf_token}}", semester: $("input[name=semester2]:checked").val(), branch: $("input[name=branch2]:checked").val()}, success: function(result){
-                        $("#subject-list").html(result);
-                }});
-                    });
+                    if ($("input[name=semester2]:checked").val()) {
+                        $.ajax({url: "{% url 'results_app:get_subjects' %}", type: "POST", data: {csrfmiddlewaretoken: "{{csrf_token}}", semester: $("input[name=semester2]:checked").val(), branch: $("input[name=branch2]:checked").val()}, success: function(result){
+                            $("#subject-list").html(result);
+                        }});
+                    }
+                });
+            });
+            $(document).ready(function(){
+                $("input[name=semester2]").change(function(){
+                    if ($("input[name=branch2]:checked").val()) {
+                        $.ajax({url: "{% url 'results_app:get_subjects' %}", type: "POST", data: {csrfmiddlewaretoken: "{{csrf_token}}", semester: $("input[name=semester2]:checked").val(), branch: $("input[name=branch2]:checked").val()}, success: function(result){
+                            $("#subject-list").html(result);
+                      }});
+                    }
+                });
             });
 </script>
          
