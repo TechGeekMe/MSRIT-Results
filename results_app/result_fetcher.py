@@ -56,8 +56,8 @@ def fetch_result(usn):
     row = sub_tables[0]
     row_data = row.find_all('td')
     error_message = row_data[7].get_text()
-
-    if (error_message.startswith('Oops')):
+    print error_message
+    if (error_message.startswith('Oops' or 'Your')):
         return None
 
     # Extracting name and usn
