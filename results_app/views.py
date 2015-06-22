@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 
 from django.core.urlresolvers import reverse
 
-from .models import Student, Result, Subject
+from .models import Student, Result, Subject, SubjectList
 
 from . import add_result
 
@@ -83,7 +83,7 @@ def student_name_list(request):
 def sem_results(request):
     sem = request.POST['semester']
     branch = request.POST['branch'].upper()
-    results = Result.objects.filter(student__pk__regex=r'1MS\d\d%s*' % branch, semester=sem)
+    results = Result.objects.filter(student__pk__regex=r'^1MS\d\d%s*' % branch, semester=sem)
     sort = request.POST['sort']
     if sort == 'name':
         results.order_by('student__name')
@@ -92,4 +92,18 @@ def sem_results(request):
     if sort == 'cgpa':
         results = results.order_by('-cgpa')
     return render(request, 'results_app/sem_results.html', {'results': results, 'semester': sem, 'branch': branch, 'sort': sort})
+
+def get_subjects(request, semester, branch):
+    subjects = SubjectList.objects.filter(course_code__regex=r'%s[A-Z]*%s.*' % (branch, semester))
+    resp = ''
+    for subject in subjects:
+        resp += "<li><a href=\"%s\">%s</a></li>" % (reverse('results_app:subject_results', args=(subject.course_code,)), subject.subject_name)
+    return HttpResponse(resp)
+
+def subject_results(request, course_code):
+    subjects = Subject.objects.filter(course_code=course_code)
+    return render(request, 'results_app/subject_results.html', {'subjects': subjects})
+        
+    
+    
     
