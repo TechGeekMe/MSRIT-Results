@@ -102,29 +102,29 @@
                                     <label for="branch" class="control-label col-sm-3">Branch:</label>
                                     <div class="btn-group" data-toggle="buttons" id="branch">
                                         <label class="btn btn-primary col-xs-3 col-sm-2">
-                                            <input type="radio" name="branch" id="cs" value="cs" />CSE</label>
+                                            <input type="radio" name="branch" id="cs" value="CS" />CSE</label>
                                         <label class="btn btn-primary col-xs-3 col-sm-2">
-                                            <input type="radio" name="branch" id="is" value="is" />ISE</label>
+                                            <input type="radio" name="branch" id="is" value="IS" />ISE</label>
                                         <label class="btn btn-primary col-xs-3 col-sm-2">
-                                            <input type="radio" name="branch" id="ec" value="ec" />EC</label>
+                                            <input type="radio" name="branch" id="ec" value="EC" />EC</label>
                                         <label class="btn btn-primary col-xs-3 col-sm-2">
-                                            <input type="radio" name="branch" id="me" value="me" />MECH</label>
+                                            <input type="radio" name="branch" id="me" value="ME" />MECH</label>
                                         <label class="btn btn-primary col-xs-3 col-sm-2">
-                                            <input type="radio" name="branch" id="ee" value="ee" />EEE</label>
+                                            <input type="radio" name="branch" id="ee" value="EE" />EEE</label>
                                         <label class="btn btn-primary col-xs-3 col-sm-2">
-                                            <input type="radio" name="branch" id="cv" value="cv" />CIVIL</label>
+                                            <input type="radio" name="branch" id="cv" value="CV" />CIVIL</label>
                                         <label class="btn btn-primary col-xs-3 col-sm-2">
-                                            <input type="radio" name="branch" id="tc" value="tc" />TC</label>
+                                            <input type="radio" name="branch" id="tc" value="TC" />TC</label>
                                         <label class="btn btn-primary col-xs-3 col-sm-2">
-                                            <input type="radio" name="branch" id="it" value="it" />IT</label>
+                                            <input type="radio" name="branch" id="it" value="IT" />IT</label>
                                         <label class="btn btn-primary col-xs-3 col-sm-2">
-                                            <input type="radio" name="branch" id="im" value="im" />IEM</label>
+                                            <input type="radio" name="branch" id="im" value="IM" />IEM</label>
                                         <label class="btn btn-primary col-xs-3 col-sm-2">
-                                            <input type="radio" name="branch" id="ch" value="ch" />CHEM</label>
+                                            <input type="radio" name="branch" id="ch" value="CH" />CHEM</label>
                                         <label class="btn btn-primary col-xs-3 col-sm-2">
-                                            <input type="radio" name="branch" id="ml" value="ml" />ML</label>
+                                            <input type="radio" name="branch" id="ml" value="ML" />ML</label>
                                         <label class="btn btn-primary col-xs-3 col-sm-2">
-                                            <input type="radio" name="branch" id="bt" value="bt" />BT</label>
+                                            <input type="radio" name="branch" id="bt" value="BT" />BT</label>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -141,66 +141,62 @@
                     </div>
                     <div id="collapse-four" class="panel-collapse collapse in">
                         <div class="panel-body">
-                            <form role="form" class="form-horizontal" action="{% url 'results_app:sem_results' %}" method="post">{% csrf_token %}
+                            <form role="form" class="form-horizontal" action="{% url 'results_app:subject_results' %}" method="post">{% csrf_token %}
                                 <input type="hidden" name="sort" value="sgpa">
                                 <div class="form-group">
-                                    <label for="semesters" class="control-label col-xs-3">Semester:</label>
-                                    <div class="btn-group" data-toggle="buttons" id="semesters">
+                                    <label for="semesters2" class="control-label col-xs-3">Semester:</label>
+                                    <div class="btn-group" data-toggle="buttons" id="semesters2">
                                         <label class="btn btn-primary disabled">
-                                            <input type="radio" name="semester" id="1" value="1" />1</label>
+                                            <input type="radio" name="semester2" id="1" value="1" />1</label>
                                         <label class="btn btn-primary">
-                                            <input type="radio" name="semester" id="2" value="2" />2</label>
+                                            <input type="radio" name="semester2" id="2" value="2" />2</label>
                                         <label class="btn btn-primary disabled">
-                                            <input type="radio" name="semester" id="3" value="3" />3</label>
+                                            <input type="radio" name="semester2" id="3" value="3" />3</label>
                                         <label class="btn btn-primary">
-                                            <input type="radio" name="semester" id="4" value="4" />4</label>
+                                            <input type="radio" name="semester2" id="4" value="4" />4</label>
                                         <label class="btn btn-primary disabled">
-                                            <input type="radio" name="semester" id="5" value="5" />5</label>
+                                            <input type="radio" name="semester2" id="5" value="5" />5</label>
                                         <label class="btn btn-primary">
-                                            <input type="radio" name="semester" id="6" value="6" />6</label>
+                                            <input type="radio" name="semester2" id="6" value="6" />6</label>
                                         <label class="btn btn-primary disabled">
-                                            <input type="radio" name="semester" id="7" value="7" />7</label>
+                                            <input type="radio" name="semester2" id="7" value="7" />7</label>
                                         <label class="btn btn-primary">
-                                            <input type="radio" name="semester" id="8" value="8" />8</label>
+                                            <input type="radio" name="semester2" id="8" value="8" />8</label>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="branch" class="control-label col-sm-3">Branch:</label>
-                                    <div class="btn-group" data-toggle="buttons" id="branch">
+                                    <label for="branch2" class="control-label col-sm-3">Branch:</label>
+                                    <div class="btn-group" data-toggle="buttons" id="branch2">
                                         <label class="btn btn-primary col-xs-3 col-sm-2">
-                                            <input type="radio" name="branch" id="cs" value="cs" />CSE</label>
+                                            <input type="radio" name="branch2" id="cs" value="CS" />CSE</label>
                                         <label class="btn btn-primary col-xs-3 col-sm-2">
-                                            <input type="radio" name="branch" id="is" value="is" />ISE</label>
+                                            <input type="radio" name="branch2" id="is" value="IS" />ISE</label>
                                         <label class="btn btn-primary col-xs-3 col-sm-2">
-                                            <input type="radio" name="branch" id="ec" value="ec" />EC</label>
+                                            <input type="radio" name="branch2" id="ec" value="EC" />EC</label>
                                         <label class="btn btn-primary col-xs-3 col-sm-2">
-                                            <input type="radio" name="branch" id="me" value="me" />MECH</label>
+                                            <input type="radio" name="branch2" id="me" value="ME" />MECH</label>
                                         <label class="btn btn-primary col-xs-3 col-sm-2">
-                                            <input type="radio" name="branch" id="ee" value="ee" />EEE</label>
+                                            <input type="radio" name="branch2" id="ee" value="EE" />EEE</label>
                                         <label class="btn btn-primary col-xs-3 col-sm-2">
-                                            <input type="radio" name="branch" id="cv" value="cv" />CIVIL</label>
+                                            <input type="radio" name="branch2" id="cv" value="CV" />CIVIL</label>
                                         <label class="btn btn-primary col-xs-3 col-sm-2">
-                                            <input type="radio" name="branch" id="tc" value="tc" />TC</label>
+                                            <input type="radio" name="branch2" id="tc" value="TC" />TC</label>
                                         <label class="btn btn-primary col-xs-3 col-sm-2">
-                                            <input type="radio" name="branch" id="it" value="it" />IT</label>
+                                            <input type="radio" name="branch2" id="it" value="IT" />IT</label>
                                         <label class="btn btn-primary col-xs-3 col-sm-2">
-                                            <input type="radio" name="branch" id="im" value="im" />IEM</label>
+                                            <input type="radio" name="branch2" id="im" value="IM" />IEM</label>
                                         <label class="btn btn-primary col-xs-3 col-sm-2">
-                                            <input type="radio" name="branch" id="ch" value="ch" />CHEM</label>
+                                            <input type="radio" name="branch2" id="ch" value="CH" />CHEM</label>
                                         <label class="btn btn-primary col-xs-3 col-sm-2">
-                                            <input type="radio" name="branch" id="ml" value="ml" />ML</label>
+                                            <input type="radio" name="branch2" id="ml" value="ML" />ML</label>
                                         <label class="btn btn-primary col-xs-3 col-sm-2">
-                                            <input type="radio" name="branch" id="bt" value="bt" />BT</label>
+                                            <input type="radio" name="branch2" id="bt" value="BT" />BT</label>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                       <label class="control-label col-xs-3" for="subject-list">Subject:</label>
                                       <div class="col-sm-5 col-sm-offset-1">
-                                      <select class="form-control" id="subject-list">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
+                                      <select name="course_code" class="form-control" id="subject-list">
                                       </select>
                                       </div>
                                         
@@ -258,8 +254,8 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <script>
             $(document).ready(function(){
-                $(":radio").change(function(){
-                    $.ajax({url: "{% url 'results_app:get_subjects' semester='8' branch='CS' %}", success: function(result){
+                $("input[name=branch2]").change(function(){
+                    $.ajax({url: "{% url 'results_app:get_subjects' %}", type: "POST", data: {csrfmiddlewaretoken: "{{csrf_token}}", semester: $("input[name=semester2]:checked").val(), branch: $("input[name=branch2]:checked").val()}, success: function(result){
                         $("#subject-list").html(result);
                 }});
                     });
