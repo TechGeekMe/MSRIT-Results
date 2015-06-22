@@ -44,7 +44,6 @@ def fetch_result(usn):
     payload = {'usn': usn, 'option': 'com_examresult', 'task': 'getResult'}
     r = requests.post("http://exam.msrit.edu/index.php", data=payload)
     data = r.text
-    print data
     
     # Feed html to BeautifulSoup
 
