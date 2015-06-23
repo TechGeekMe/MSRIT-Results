@@ -20,7 +20,7 @@
 
                 <div class="col-sm-9">
                     <div class="panel-heading">
-                        <h3>##BRANCH## Semester ##SEM## Results</h3>
+                        <h3>{{ student.branch }} Semester {{ student.result.semester }} Results</h3>
                     </div>
                 </div>
                 <div class="col-sm-2 col-sm-offset-1 col-xs-offset-8">
@@ -44,36 +44,19 @@
                         <table class=" table table-responsive table-hover text-center">
                             <thead>
                                 <tr>
+                                    <th class="text-center">USN</th>
                                     <th class="text-center">Name</th>
-                                    <th class="text-center">Subject Code</th>
-                                    <th class="text-center">Subject</th>
-                                    <th class="text-center">Grade</th>
+                                    <th class="text-center">SGPA</th>
+                                    <th class="text-center">CGPA</th>
                                 </tr>
                             </thead>
                             <tbody data-link="row" class="rowlink">
+                                {% for result in results %}
                                 <tr>
-                                    <td><a href="http://techgeekme.com" style="text-decoration:none;">Name1</a></td>
-                                    <td>IS401</td>
-                                    <td>Algorithm Design & Analysis</td>
-                                    <td>S</td>
-                                </tr>
-                                <tr>
-                                    <td><a href="http://techgeekme.com" style="text-decoration:none;">Name2</a></td>
-                                    <td>IS401</td>
-                                    <td>Algorithm Design & Analysis</td>
-                                    <td>S</td>
-                                </tr>
-                                <tr>
-                                    <td><a href="http://techgeekme.com" style="text-decoration:none;">Name3</a></td>
-                                    <td>IS401</td>
-                                    <td>Algorithm Design & Analysis</td>
-                                    <td>S</td>
-                                </tr>
-                                <tr>
-                                    <td><a href="http://techgeekme.com" style="text-decoration:none;">Name4</a></td>
-                                    <td>IS401</td>
-                                    <td>Algorithm Design & Analysis</td>
-                                    <td>S</td>
+                                    <td><a href="{% url 'results_app:student_result' result.student.usn %}" style="text-decoration:none;">{{ result.student.usn }}</a></td>
+                                    <td>{{ result.student.name }}</td>
+                                    <td>{{ result.sgpa }}</td>
+                                    <td>{{ result.cgpa }}</td>
                                 </tr>
                             </tbody>
                         </table>

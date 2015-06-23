@@ -23,9 +23,9 @@
         <div class="panel panel-default">
             <!--Heading with name USN and dept-->
             <div class="panel-heading text-center">
-                <h2>##NAME##</h2>
-                <h4>##USN##</h4>
-                <h4>##DEPARTMENT##</h4>
+                <h2>{{ student.name }}</h2>
+                <h4>{{ student.usn }}</h4>
+                <h4>{{ student.department }}</h4>
             </div>
 
             <!--Table with subject and grade-->
@@ -40,26 +40,13 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {% for subject in student.result.subject_set.all() %}
                             <tr class="info">
-                                <td>IS410</td>
-                                <td>Algorithm Design And Analysis</td>
-                                <td>S</td>
+                                <td>{{ subject.course_code }}</td>
+                                <td>{{ subject.subject_name }}</td>
+                                <td>{{ subject.grade }}</td>
                             </tr>
-                            <tr class="info">
-                                <td>IS411</td>
-                                <td>Internet Programming</td>
-                                <td>A</td>
-                            </tr>
-                            <tr class="info">
-                                <td>IS410</td>
-                                <td>Algorithm Design And Analysis</td>
-                                <td>S</td>
-                            </tr>
-                            <tr class="info">
-                                <td>IS411</td>
-                                <td>Internet Programming</td>
-                                <td>A</td>
-                            </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
@@ -72,7 +59,7 @@
                 <div class="panel panel-default">
                     <div class="panel panel-body text-center">
                         <h3>SGPA</h3>
-                        <h4>9.6</h4>
+                        <h4>{{ student.result.sgpa}}</h4>
                     </div>
                 </div>
             </div>
@@ -80,7 +67,7 @@
                 <div class="panel panel-default">
                     <div class="panel panel-body text-center">
                         <h3>CGPA</h3>
-                        <h4>9.2</h4>
+                        <h4>{{ student.result.cgpa }}</h4>
                     </div>
                 </div>
             </div>
@@ -89,7 +76,7 @@
                 <div class="panel panel-default">
                     <div class="panel panel-body text-center">
                         <h4>Credits Registered</h4>
-                        <h4>24</h4>
+                        <h4>{{ student.result.credits_registered }}</h4>
                     </div>
                 </div>
             </div>
@@ -97,7 +84,7 @@
                 <div class="panel panel-default">
                     <div class="panel panel-body text-center">
                         <h4>Credits Earned</h4>
-                        <h4>24</h4>
+                        <h4>{{ student.results.credits_earned }}</h4>
                     </div>
                 </div>
             </div>

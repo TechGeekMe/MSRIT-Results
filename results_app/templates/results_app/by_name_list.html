@@ -17,33 +17,20 @@
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3>Which ##NAME## are you looking for? </h3>
+                <h3>Which {{ name }} are you looking for? </h3>
             </div>
             <div class="panel-body">
                 <div class="table-responsive">
                     <div style="text-decoration:none;">
                         <table class=" table table-responsive table-hover">
                         <tbody data-link="row" class="rowlink">
+                            {% for student in students %}
                             <tr>
-                                <td><a href="http://techgeekme.com" style="text-decoration:none;">Name1</a></td>
-                                <td>SEM</td>
-                                <td>Branch</td>
+                                <td><a href="{% url 'results_app:student_result' student.usn %}" style="text-decoration:none;">{{ student.name }}</a></td>
+                                <td>{{ student.result.semester }}</td>
+                                <td>{{ student.branch }}</td>
                             </tr>
-                            <tr>
-                                <td><a href="http://techgeekme.com" style="text-decoration:none;">Name2</a></td>
-                                <td>SEM</td>
-                                <td>Branch</td>
-                            </tr>
-                            <tr>
-                                <td><a href="http://techgeekme.com" style="text-decoration:none;">Name3</a></td>
-                                <td>SEM</td>
-                                <td>Branch</td>
-                            </tr>
-                            <tr>
-                                <td><a href="http://techgeekme.com" style="text-decoration:none;">Name4</a></td>
-                                <td>SEM</td>
-                                <td>Branch</td>
-                            </tr>
+                            {% endfor %}
                         </tbody>
                         </table>
                     </div>
