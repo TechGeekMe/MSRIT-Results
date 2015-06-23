@@ -25,21 +25,8 @@
                 <div class="table-responsive">
                     <div style="text-decoration:none;">
                         <table class=" table table-responsive table-hover">
-                            <thead>
-                                <tr>
-                                    <td class="text-center">Name</td>
-                                    <td class="text-center">Sem</td>
-                                    <td class="text-center">Branch</td>
-                                </tr>
-                            </thead>
                         <tbody data-link="row" class="rowlink">
                             {% for student in students %}
-<<<<<<< HEAD
-                            <tr >              
-                                <td class="text-center"><a href="{% url 'results_app:student_result' student.usn %}" style="text-decoration:none;">{{ student.name }}</a></td>
-                                <td class="text-center">{{ student.result_set.all()[0].semester }}</td>
-                                <td class="text-center">{{ student.branch }}</td>
-=======
                             <tr>
                                 <td><a href="{% url 'results_app:student_result' student.usn %}" style="text-decoration:none;">{{ student.name }}</a></td>
                                 <td>
@@ -48,10 +35,6 @@
                                     {% endfor %}
                                 </td>
                                 <td>{{ student.department }}</td>
-<<<<<<< HEAD
->>>>>>> origin/master
-=======
->>>>>>> origin/master
                             </tr>
                             {% endfor %}
                         </tbody>

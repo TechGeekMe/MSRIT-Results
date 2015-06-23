@@ -11,16 +11,18 @@
 
 <body style="padding-bottom: 70px;" onload="document.getElementById('{{ sort }}').selected=true;">
     <div class="container">
-        <div class="jumbotron">
-            <h1 align="center" style="font-family:Georgia, 'Times New Roman', Times, serif;">MSRIT Results</h1>
-        </div>
+        <a href="{% url 'results_app:index' %}">
+            <div class="jumbotron">
+                <h1 align="center" style="font-family:Georgia, 'Times New Roman', Times, serif;">MSRIT Results</h1>
+            </div>
+        </a>
 
         <div class="panel panel-default">
             <div class="row">
 
                 <div class="col-sm-9">
                     <div class="panel-heading">
-                        <h3>###SUBJECT NAME### Results</h3>
+                        <h3>{{ subject_name }}</h3>
                     </div>
                 </div>
             </div>
@@ -38,26 +40,13 @@
                                 </tr>
                             </thead>
                             <tbody data-link="row" class="rowlink">
+                                {% for subject in subjects %}
                                 <tr>                                    
-                                    <td>1MS13IS000</td>
-                                    <td><a href="http://techgeekme.com" style="text-decoration:none;">Name1</a></td>
-                                    <td>S</td>
+                                    <td>{{ subject.result.student.usn }}</td>
+                                    <td><a href="{% url 'results_app:student_result' subject.result.student.usn %}" style="text-decoration:none;">{{ subject.result.student.name }}</a></td>
+                                    <td>{{ subject.grade }}</td>
                                 </tr>
-                                <tr>
-                                    <td>1MS13IS000</td>
-                                    <td><a href="http://techgeekme.com" style="text-decoration:none;">Name2</a></td>
-                                    <td>S</td>
-                                </tr>
-                                <tr>
-                                    <td>1MS13IS000</td>
-                                    <td><a href="http://techgeekme.com" style="text-decoration:none;">Name3</a></td>
-                                    <td>S</td>
-                                </tr>
-                                <tr>
-                                    <td>1MS13IS000</td>
-                                    <td><a href="http://techgeekme.com" style="text-decoration:none;">Name4</a></td>
-                                    <td>S</td>
-                                </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
