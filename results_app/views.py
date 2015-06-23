@@ -77,7 +77,7 @@ def student_name_list(request):
     if students.count() == 1:
         return HttpResponseRedirect(reverse('results_app:student_result', args=(students[0].usn,)))
     else:
-        return render(request, 'results_app/student_name_list.html', {'students': students}) 
+        return render(request, 'results_app/student_name_list.html', {'name': name, 'students': students}) 
         
 
 def sem_results(request):
