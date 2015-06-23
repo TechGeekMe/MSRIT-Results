@@ -18,17 +18,22 @@
         </a>
 
         <div class="panel panel-default">
-            <div class="row">
-
-                <div class="col-sm-9">
-                    <div class="panel-heading">
-                        <h3>{{ subject_name }}</h3>
-                    </div>
-                </div>
+            <div class="panel-heading text-center">
+                <h3>{{ subject_name }}</h3>
             </div>
-
-
             <div class="panel-body">
+                <div class="row">
+                    <form action="{% url 'results_app:subject_results' %}" method="post">
+                        {% csrf_token %}
+                        <div class="form-group col-xs-offset-8 col-xs-4">
+                            <select name="sort" class="form-control" onchange="this.form.submit()">
+                                <option value="name" id="name">Name</option>
+                                <option value="grade" id="grade">Grade</option>
+                            </select>
+                        </div>
+                        <input type="hidden" name="course_code" value="{{ course_code }}">
+                    </form>
+                </div>
                 <div class="table-responsive">
                     <div style="text-decoration:none;">
                         <table class=" table table-responsive table-hover text-center">

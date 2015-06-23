@@ -18,8 +18,10 @@ def add_usn(usn):
     for sub in r.subjects:
         subject = Subject(result=result, course_code=sub.course_code, subject_name=sub.subject_name,
                         credits_registered=sub.credits_registered,
-                        credits_earned=sub.credits_earned, grade=sub.grade)
+                        credits_earned=sub.credits_earned, grade=sub.grade, grade_point=sub.grade_point)
         subject.save()
         if not SubjectList.objects.filter(pk=sub.course_code).exists():
-            subjectlist = SubjectList(course_code = sub.course_code, subject_name=sub.subject_name, branch_code=r.usn[5:7], semester=r.semester)
+            subjectlist = SubjectList(course_code = sub.course_code,
+                                      subject_name=sub.subject_name, branch_code=r.usn[5:7],
+                                      semester=r.semester)
             subjectlist.save()

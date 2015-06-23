@@ -136,7 +136,7 @@
                     <div id="collapse-four" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <form role="form" class="form-horizontal" action="{% url 'results_app:subject_results' %}" method="post">{% csrf_token %}
-                                <input type="hidden" name="sort" value="sgpa">
+                                <input type="hidden" name="sort" value="grade">
                                 <div class="form-group">
                                     <label for="semesters2" class="control-label col-xs-3">Semester:</label>
                                     <div class="btn-group" data-toggle="buttons" id="semesters2">
