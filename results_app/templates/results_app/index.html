@@ -19,9 +19,11 @@
     
     <body style="padding-bottom: 70px;">
         <div class="container">
-            <div class="jumbotron">
-                <h1 align="center" style="font-family:Georgia, 'Times New Roman', Times, serif;">MSRIT Results</h1>
-            </div>
+            <a href="{% url 'results_app:index' %}">
+                <div class="jumbotron">
+                    <h1 align="center" style="font-family:Georgia, 'Times New Roman', Times, serif;">MSRIT Results</h1>
+                </div>
+            </a>
             <div class="panel-group" id="collapse">
                 <!--USN Panel-->
                 <div class="panel panel-default">
