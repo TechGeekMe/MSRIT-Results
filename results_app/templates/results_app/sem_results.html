@@ -25,7 +25,7 @@
                 <div class="row">
                     <form action="{% url 'results_app:sem_results' %}" method="post">
                         {% csrf_token %}
-                        <div class="form-group col-xs-offset-8 col-xs-4">
+                        <div class="form-group col-xs-offset-7 col-xs-5">
                             <select name="sort" class="form-control" onchange="this.form.submit()">
                                 <option value="name" id="name">Name</option>
                                 <option value="sgpa" id="sgpa">SGPA</option>
