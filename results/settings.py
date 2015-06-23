@@ -113,8 +113,8 @@ USE_TZ = True
 
 # Uncomment for production
 
- Static files (CSS, JavaScript, Images)
- https://docs.djangoproject.com/en/1.8/howto/static-files/
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 AWS_STORAGE_BUCKET_NAME = 'msrit-results'
 AWS_ACCESS_KEY_ID = 'AKIAINEFMJD73IQZW5UA'
