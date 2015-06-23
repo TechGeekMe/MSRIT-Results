@@ -69,8 +69,7 @@ def student_result(request, usn):
 
 def usn_search(request):
     usn = '1MS' + request.POST['usn'].upper()
-    student = get_object_or_404(Student, pk=usn)
-    return render(request, 'results_app/student_result.html', {'student': student}) 
+    return HttpResponseRedirect(reverse('results_app:student_result', args=(usn, ))) 
 
     
 def student_name_list(request):

@@ -3,7 +3,7 @@ from django.db import models
 class Student(models.Model):
     usn = models.CharField(max_length=15, primary_key=True)
     name = models.CharField(max_length=50)
-    department= models.CharField(max_length=50)
+    department = models.CharField(max_length=50)
     def __unicode__(self):
         return self.usn
         
