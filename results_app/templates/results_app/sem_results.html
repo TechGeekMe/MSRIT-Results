@@ -53,8 +53,18 @@
                                     <tr>
                                         <td><a href="{% url 'results_app:student_result' result.student.usn %}" style="text-decoration:none;">{{ result.student.usn }}</a></td>
                                         <td>{{ result.student.name }}</td>
-                                        <td>{{ result.sgpa }}</td>
-                                        <td>{{ result.cgpa }}</td>
+                                        <td>{% if result.sgpa == 0 %}
+                                                TAL
+                                            {% else %}
+                                                {{ result.sgpa }}
+                                            {% endif %}
+                                        </td>
+                                        <td>{% if result.cgpa == 0 %}
+                                                TAL
+                                            {% else %}
+                                                {{ result.cgpa }}
+                                            {% endif %}
+                                        </td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
