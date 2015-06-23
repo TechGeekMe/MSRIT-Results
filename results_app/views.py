@@ -107,7 +107,7 @@ def get_subjects(request):
 def subject_results(request):
     course_code = request.POST['course_code']
     subjects = Subject.objects.filter(course_code=course_code)
-    return render(request, 'results_app/subject_results.html', {'subjects': subjects})
+    return render(request, 'results_app/subject_results.html', {'subject_name': subjects[0].subject_name, 'subjects': subjects})
     
     
     
