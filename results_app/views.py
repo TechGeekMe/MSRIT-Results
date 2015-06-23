@@ -12,7 +12,8 @@ import requests
 
 from bs4 import BeautifulSoup
 
-nonexistent_usns = 0
+from django.shortcuts import render_to_response
+from django.template import RequestContext
 
 def index(request):
     return render(request, 'results_app/index.html')
@@ -114,6 +115,12 @@ def subject_results(request):
         subjects = subjects.order_by('-grade_point')
     
     return render(request, 'results_app/subject_results.html', {'course_code': course_code, 'subject_name': subjects[0].subject_name, 'subjects': subjects, 'sort': sort})
+
+def custom_404(request):
+    return render(request, 'results_app/404.html')
+
+def custom_500(request):
+    return render(request, 'results_app/404.html')
     
     
     
