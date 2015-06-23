@@ -27,7 +27,7 @@
                             {% for student in students %}
                             <tr>
                                 <td><a href="{% url 'results_app:student_result' student.usn %}" style="text-decoration:none;">{{ student.name }}</a></td>
-                                <td>{{ student.result.semester }}</td>
+                                <td>{{ student.result_set.all()[0].semester }}</td>
                                 <td>{{ student.branch }}</td>
                             </tr>
                             {% endfor %}
