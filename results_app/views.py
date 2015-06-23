@@ -88,12 +88,12 @@ def sem_results(request):
     results = Result.objects.filter(student__pk__regex=r'^1MS\d\d%s.*' % branch, semester=sem)
     sort = request.POST['sort']
     if sort == 'name':
-        results.order_by('student__name')
+        results = results.order_by('student__name')
     if sort == 'sgpa':
         results = results.order_by('-sgpa')
     if sort == 'cgpa':
         results = results.order_by('-cgpa')
-    return render(request, 'results_app/sem_results.html', {'results': results, 'semester': sem, 'branch': branch, 'sort': sort})
+    return render(request, 'results_app/sem_results.html', {'results': results, 'semester': sem, 'branch': branch, 'branch_name': results[0].student.department, 'sort': sort})
 
 def get_subjects(request):
     semester = request.POST['semester']
@@ -106,8 +106,14 @@ def get_subjects(request):
 
 def subject_results(request):
     course_code = request.POST['course_code']
+    sort = request.POST['sort']
     subjects = Subject.objects.filter(course_code=course_code)
-    return render(request, 'results_app/subject_results.html', {'subject_name': subjects[0].subject_name, 'subjects': subjects})
+    if sort == 'name':
+        subjects = subjects.order_by('result__student__name')
+    if sort == 'grade':
+        subjects = subjects.order_by('-grade_point')
+    
+    return render(request, 'results_app/subject_results.html', {'course_code': course_code, 'subject_name': subjects[0].subject_name, 'subjects': subjects, 'sort': sort})
     
     
     

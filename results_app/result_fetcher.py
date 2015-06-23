@@ -9,6 +9,7 @@ class FetchedSubject:
         self.credits_registered = None
         self.credits_earned = None
         self.grade = None
+        self.grade_point = None
     def __unicode__(self):
         return self.course_code + self.subject_name + str(self.credits_registered)\
                + str(self.credits_earned) + self.grade               
@@ -116,6 +117,20 @@ def fetch_result(usn):
         fs.credits_registered = int(float(cols[3].get_text()))
         fs.credits_earned = int(cols[4].get_text())
         fs.grade = cols[5].get_text()
+        if fs.grade == 'S':
+            fs.grade_point = 10
+        elif fs.grade == 'A':
+            fs.grade_point = 9
+        elif fs.grade == 'B':
+            fs.grade_point = 8
+        elif fs.grade == 'C':
+            fs.grade_point = 7
+        elif fs.grade == 'D':
+            fs.grade_point = 5
+        elif fs.grade == 'E':
+            fs.grade_point = 4
+        else:
+            fs.grade_point = 0
         fr.subjects.append(fs)
 
     fr.semester = max(subject_sem, key=subject_sem.get)

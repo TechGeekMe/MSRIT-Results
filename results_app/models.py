@@ -25,6 +25,7 @@ class Subject(models.Model):
     credits_registered = models.IntegerField()
     credits_earned = models.IntegerField()
     grade = models.CharField(max_length=5)
+    grade_point = models.IntegerField()
     def __unicode__(self):
         return self.subject_name
 
