@@ -62,7 +62,10 @@ def pull_dip(request, year):
 
 def student_result(request, usn):
     student = get_object_or_404(Student, pk=usn)
-    return render(request, 'results_app/student_result.html', {'student': student})
+    result = student.result_set.all()[0]
+    subjects = result.subject_set.all()
+    
+    return render(request, 'results_app/student_result.html', {'student': student, 'result': result, 'subjects': subjects})
 
 def usn_search(request):
     usn = '1MS' + request.POST['usn'].upper()
