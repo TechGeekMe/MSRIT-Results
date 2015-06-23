@@ -1,4 +1,4 @@
-from django.conf.urls import include, url
+from django.conf.urls import include, url, handler404, handler500
 from django.contrib import admin
 
 urlpatterns = [
@@ -9,3 +9,6 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('results_app.urls', namespace='results_app')),
 ]
+
+handler404 = 'results_app.views.custom_404'
+handler500 = 'results_app.views.custom_500'
