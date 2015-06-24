@@ -22,6 +22,5 @@ def add_usn(usn):
         subject.save()
         if not SubjectList.objects.filter(pk=sub.course_code).exists():
             subjectlist = SubjectList(course_code = sub.course_code,
-                                      subject_name=sub.subject_name, branch_code=r.branch_code,
-                                      semester=r.semester)
+                                      subject_name=sub.subject_name, branch_code=sub.course_code[:2])
             subjectlist.save()
