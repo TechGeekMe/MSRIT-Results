@@ -22,6 +22,7 @@ class FetchedResult():
         self.usn = None
         self.name = None
         self.department = None
+        self.branch_code = None
         self.credits_registered = None
         self.credits_earned = None
         self.sgpa = None
@@ -68,6 +69,7 @@ def fetch_result(usn):
     fr.usn = row_data[3].get_text()
     fr.usn = re.sub(r'^USN : ', '', fr.usn)
     fr.usn = fr.usn.upper()
+    fr.branch_code = fr.usn[5:7]
 
     # Extracting department
     
