@@ -10,7 +10,7 @@ def add_usn(usn):
     if r is None:
         raise ValueError("USN %s" % usn)
 
-    s = Student(usn=r.usn, name=r.name, department=r.department)
+    s = Student(usn=r.usn, name=r.name, department=r.department, branch_code=r.branch_code)
     s.save()
     result = Result(student=s, credits_registered=r.credits_registered, credits_earned=r.credits_earned, sgpa=r.sgpa, cgpa=r.cgpa, semester=r.semester)
     result.save()
@@ -22,6 +22,6 @@ def add_usn(usn):
         subject.save()
         if not SubjectList.objects.filter(pk=sub.course_code).exists():
             subjectlist = SubjectList(course_code = sub.course_code,
-                                      subject_name=sub.subject_name, branch_code=r.usn[5:7],
+                                      subject_name=sub.subject_name, branch_code=r.branch_code,
                                       semester=r.semester)
             subjectlist.save()
