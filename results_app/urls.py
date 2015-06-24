@@ -14,4 +14,5 @@ urlpatterns = [
     url(r'^usn_search$', views.usn_search,  name='usn_search'),
     url(r'^get_subjects/$', views.get_subjects, name='get_subjects'),
     url(r'^subject_results/$', views.subject_results, name='subject_results'),
+    url(r'^student_not_found/$', views.student_not_found, name='student_not_found')
 ]

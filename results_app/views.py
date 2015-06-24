@@ -77,11 +77,15 @@ def student_name_list(request):
     #add redirect for no name match found
     name = request.POST['student_name']
     students = Student.objects.filter(name__icontains=name)
-    if students.count() == 1:
+    if students.count() == 0:
+        return HttpResponseRedirect(reverse('results_app:student_not_found'))
+    elif students.count() == 1:
         return HttpResponseRedirect(reverse('results_app:student_result', args=(students[0].usn,)))
     else:
         return render(request, 'results_app/student_name_list.html', {'name': name, 'students': students}) 
         
+def student_not_found(request):
+    return render(request, 'results_app/student_not_found.html')
 
 def sem_results(request):
     sem = request.POST['semester']
@@ -90,9 +94,9 @@ def sem_results(request):
     sort = request.POST['sort']
     if sort == 'name':
         results = results.order_by('student__name')
-    if sort == 'sgpa':
+    elif sort == 'sgpa':
         results = results.order_by('-sgpa')
-    if sort == 'cgpa':
+    elif sort == 'cgpa':
         results = results.order_by('-cgpa')
     return render(request, 'results_app/sem_results.html', {'results': results, 'semester': sem, 'branch': branch, 'branch_name': results[0].student.department, 'sort': sort})
 
