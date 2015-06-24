@@ -4,6 +4,7 @@ class Student(models.Model):
     usn = models.CharField(max_length=15, primary_key=True)
     name = models.CharField(max_length=50)
     department = models.CharField(max_length=50)
+    branch_code = models.CharField(max_length=2)
     def __unicode__(self):
         return self.usn
         
