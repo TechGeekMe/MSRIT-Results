@@ -1,4 +1,4 @@
-﻿{% extends "base.html" %}
+﻿{% extends "results_app/base.html" %}
 {% block content %}
 <div class="panel-group" id="collapse">
     <!--USN Panel-->
@@ -88,7 +88,7 @@
                     </div>
                     <div class="form-group">
                         <label for="branch" class="control-label col-sm-3">Branch:</label>
-                        <div class="btn-group" data-toggle="buttons" id="branch">
+                        <div class="btn-group col-sm-8" data-toggle="buttons" id="branch">
                             <label class="btn btn-primary col-xs-3 col-sm-2">
                                 <input type="radio" name="branch" value="CS" />CSE
                             </label>
@@ -146,7 +146,7 @@
                     <input type="hidden" name="sort" value="grade">
                     <div class="form-group">
                         <label for="branch2" class="control-label col-sm-3">Department:</label>
-                        <div class="btn-group" data-toggle="buttons" id="branch2">
+                        <div class="btn-group col-sm-8" data-toggle="buttons" id="branch2">
                             <label class="btn btn-primary col-xs-3 col-sm-2">
                                 <input type="radio" name="branch2" value="CS" />CSE
                             </label>
