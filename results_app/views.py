@@ -97,9 +97,9 @@ def sem_results(request):
     return render(request, 'results_app/sem_results.html', {'results': results, 'semester': sem, 'branch': branch, 'branch_name': results[0].student.department, 'sort': sort})
 
 def get_subjects(request):
-    semester = request.POST['semester']
+    sem = request.POST['semester']
     branch = request.POST['branch']
-    subjects = SubjectList.objects.filter(course_code__regex=r'^%s[A-Z]*%s.*' % (branch, semester))
+    subjects = SubjectList.objects.filter(branch_code=branch,  semester=sem)
     resp = ''
     for subject in subjects:
         resp += "<option value=\"%s\">%s</option>"% (subject.course_code, subject.subject_name)
