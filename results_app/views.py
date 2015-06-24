@@ -86,7 +86,7 @@ def student_name_list(request):
 def sem_results(request):
     sem = request.POST['semester']
     branch = request.POST['branch']
-    results = Result.objects.filter(student__usn__regex=r'^1MS\d\d%s.*' % branch)
+    results = Result.objects.filter(student__usn='1MS11CS001', semester=sem)
     sort = request.POST['sort']
     if sort == 'name':
         results = results.order_by('student__name')
