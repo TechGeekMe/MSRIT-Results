@@ -109,7 +109,7 @@
                                         <label class="btn btn-primary col-xs-3 col-sm-2">
                                             <input type="radio" name="branch" value="CV" />CIVIL</label>
                                         <label class="btn btn-primary col-xs-3 col-sm-2">
-                                            <input type="radio" name="branch" value="TC" />TC</label>
+                                            <input type="radio" name="branch" value="TE" />TC</label>
                                         <label class="btn btn-primary col-xs-3 col-sm-2">
                                             <input type="radio" name="branch" value="IT" />IT</label>
                                         <label class="btn btn-primary col-xs-3 col-sm-2">
@@ -139,28 +139,7 @@
                             <form role="form" class="form-horizontal" action="{% url 'results_app:subject_results' %}" method="post">{% csrf_token %}
                                 <input type="hidden" name="sort" value="grade">
                                 <div class="form-group">
-                                    <label for="semesters2" class="control-label col-xs-3">Semester:</label>
-                                    <div class="btn-group" data-toggle="buttons" id="semesters2">
-                                        <label class="btn btn-primary disabled">
-                                            <input type="radio" name="semester2" value="1" />1</label>
-                                        <label class="btn btn-primary">
-                                            <input type="radio" name="semester2" value="2" />2</label>
-                                        <label class="btn btn-primary disabled">
-                                            <input type="radio" name="semester2" value="3" />3</label>
-                                        <label class="btn btn-primary">
-                                            <input type="radio" name="semester2" value="4" />4</label>
-                                        <label class="btn btn-primary disabled">
-                                            <input type="radio" name="semester2" value="5" />5</label>
-                                        <label class="btn btn-primary">
-                                            <input type="radio" name="semester2" value="6" />6</label>
-                                        <label class="btn btn-primary disabled">
-                                            <input type="radio" name="semester2" value="7" />7</label>
-                                        <label class="btn btn-primary">
-                                            <input type="radio" name="semester2" value="8" />8</label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="branch2" class="control-label col-sm-3">Branch:</label>
+                                    <label for="branch2" class="control-label col-sm-3">Department:</label>
                                     <div class="btn-group" data-toggle="buttons" id="branch2">
                                         <label class="btn btn-primary col-xs-3 col-sm-2">
                                             <input type="radio" name="branch2" value="CS" />CSE</label>
@@ -186,6 +165,8 @@
                                             <input type="radio" name="branch2" value="ML" />ML</label>
                                         <label class="btn btn-primary col-xs-3 col-sm-2">
                                             <input type="radio" name="branch2" value="BT" />BT</label>
+                                        <label class="btn btn-primary col-xs-3 col-sm-2">
+                                            <input type="radio" name="branch2" value="HS" />HSS</label>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -250,28 +231,19 @@
         <script>
             $(document).ready(function(){
                 $("input[name=branch2]").change(function(){
-                    if ($("input[name=semester2]:checked").val()) {
-                        $.ajax({url: "{% url 'results_app:get_subjects' %}", type: "POST", data: {csrfmiddlewaretoken: "{{csrf_token}}", semester: $("input[name=semester2]:checked").val(), branch: $("input[name=branch2]:checked").val()}, success: function(result){
+                        $.ajax({url: "{% url 'results_app:get_subjects' %}", type: "POST", data: {csrfmiddlewaretoken: "{{csrf_token}}", branch: $("input[name=branch2]:checked").val()}, success: function(result){
+                            $("#subject-list").html(result);
+                        }});
+                });
+                    
+            });
+            $(document).ready(function(){
+                    if ($("input[name=branch2]:checked").val()) {
+                        $.ajax({url: "{% url 'results_app:get_subjects' %}", type: "POST", data: {csrfmiddlewaretoken: "{{csrf_token}}", branch: $("input[name=branch2]:checked").val()}, success: function(result){
                             $("#subject-list").html(result);
                         }});
                     }
-                });
-            });
-            $(document).ready(function(){
-                $("input[name=semester2]").change(function(){
-                    if ($("input[name=branch2]:checked").val()) {
-                        $.ajax({url: "{% url 'results_app:get_subjects' %}", type: "POST", data: {csrfmiddlewaretoken: "{{csrf_token}}", semester: $("input[name=semester2]:checked").val(), branch: $("input[name=branch2]:checked").val()}, success: function(result){
-                            $("#subject-list").html(result);
-                      }});
-                    }
-                });
-            });
-            $(document).ready(function(){
-                    if ($("input[name=branch2]:checked").val() && $("input[name=semester2]:checked").val()) {
-                        $.ajax({url: "{% url 'results_app:get_subjects' %}", type: "POST", data: {csrfmiddlewaretoken: "{{csrf_token}}", semester: $("input[name=semester2]:checked").val(), branch: $("input[name=branch2]:checked").val()}, success: function(result){
-                            $("#subject-list").html(result);
-                      }});
-                    }
+                    
             });
 </script>
          
