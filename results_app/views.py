@@ -86,7 +86,7 @@ def student_name_list(request):
 def sem_results(request):
     sem = request.POST['semester']
     branch = request.POST['branch']
-    results = Result.objects.filter(semester=sem)
+    results = Result.objects.filter(sgpa=9.65, semester=sem)
     sort = request.POST['sort']
     if sort == 'name':
         results = results.order_by('student__name')
