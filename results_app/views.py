@@ -86,7 +86,7 @@ def student_name_list(request):
 def sem_results(request):
     sem = request.POST['semester']
     branch = request.POST['branch']
-    results = Result.objects.filter(student__pk__regex=r'^1MS\d\d%s.*$' % branch, semester=sem)
+    results = Result.objects.filter(student__pk__regex=r'^1MS\d\d%s.*' % branch, semester=sem)
     sort = request.POST['sort']
     if sort == 'name':
         results = results.order_by('student__name')
@@ -99,7 +99,7 @@ def sem_results(request):
 def get_subjects(request):
     semester = request.POST['semester']
     branch = request.POST['branch']
-    subjects = SubjectList.objects.filter(course_code__regex=r'%s[A-Z]*%s.*' % (branch, semester))
+    subjects = SubjectList.objects.filter(course_code__regex=r'^%s[A-Z]*%s.*' % (branch, semester))
     resp = ''
     for subject in subjects:
         resp += "<option value=\"%s\">%s</option>"% (subject.course_code, subject.subject_name)
