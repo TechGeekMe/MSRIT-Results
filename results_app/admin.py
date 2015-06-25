@@ -25,7 +25,7 @@ class SubjectListAdmin(admin.ModelAdmin):
     search_fields = ['branch_code']
 
 class SubjectAdmin(admin.ModelAdmin):
-    list_display = ('usn',)
+    list_display = ('usn', 'course_code', 'subject_name')
     search_fields = ['course_code']
     def usn(self, obj):
         return obj.result.student.usn
