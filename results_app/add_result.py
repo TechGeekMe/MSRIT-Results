@@ -12,7 +12,7 @@ def add_usn(usn):
 
     s = Student(usn=r.usn, name=r.name, department=r.department, branch_code=r.branch_code)
     s.save()
-    result = Result(student=s, credits_registered=r.credits_registered, credits_earned=r.credits_earned, sgpa=r.sgpa, cgpa=r.cgpa, semester=r.semester)
+    result = Result(student=s, credits_registered=r.credits_registered, credits_earned=r.credits_earned, sgpa=r.sgpa, cgpa=r.cgpa, semester=r.semester if r.semester <= 8 else 8)
     result.save()
     
     for sub in r.subjects:

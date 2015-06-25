@@ -11,7 +11,7 @@ class SubjectInline(admin.StackedInline):
 class StudentAdmin(admin.ModelAdmin):
     list_display = ('usn', 'name', 'department')
     inlines = [ResultInline]
-    search_fields = ['name']
+    search_fields = ['name', 'usn']
 
 class ResultAdmin(admin.ModelAdmin):
     list_display = ('student', 'name', 'sgpa', 'cgpa', 'semester')
