@@ -257,18 +257,20 @@
 <script>
             $(document).ready(function(){
                 $("input").prop('checked', false);
-            });
-            $("#first-year-subjects").hide();
-            $('#first-year').change(function(){
-                if($('#first-year').is(':checked')) {
-                    $('#first-year-subjects').show();
-                    $('#fycs').prop('required', true);
-                }
+                $("#first-year-subjects").hide();
             });
             $("input[name=department]").change(function(){
-                    $.ajax({url: "{% url 'results_app:get_subjects' %}", type: "POST", data: {csrfmiddlewaretoken: "{{csrf_token}}", department: $("input[name=department]:checked").val()}, success: function(result){
-                        $("#subject-list").html(result);
-                    }});
+                if ($('#first-year').is(':checked')) {
+                    $('#first-year-subjects').show();
+                    $('#fycs').prop('required', true);
+                }               
+                else {
+                    $('#first-year-subjects').hide();
+                    $('#fycs').prop('required', false);
+                }
+                $.ajax({url: "{% url 'results_app:get_subjects' %}", type: "POST", data: {csrfmiddlewaretoken: "{{csrf_token}}", department: $("input[name=department]:checked").val()}, success: function(result){
+                    $("#subject-list").html(result);
+                }});
             });
             
 
