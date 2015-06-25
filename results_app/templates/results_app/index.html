@@ -13,7 +13,7 @@
                     <div class="form-group">
                         <div class="col-xs-offset-1 col-xs-10 col-sm-6 col-sm-offset-3 input-group">
                             <span class="input-group-addon">1MS</span>
-                            <input type="text" class="form-control" id="usn" placeholder="USN" name="usn" style="text-transform: uppercase;" />
+                            <input type="text" class="form-control" id="usn" placeholder="USN" name="usn" style="text-transform: uppercase;" required="required" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -37,7 +37,7 @@
                             <div class="input-group-addon">
                                 <span class="glyphicon glyphicon-user"></span>
                             </div>
-                            <input type="text" class="form-control col-xs-6" id="student_name" placeholder="Name" name="student_name" />
+                            <input type="text" class="form-control col-xs-6" id="student_name" placeholder="Name" name="student_name" required="required" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -61,7 +61,7 @@
                         <label for="semesters" class="control-label col-xs-3">Semester:</label>
                         <div class="btn-group col-sm-8" data-toggle="buttons" id="semesters">
                             <label class="btn btn-primary disabled">
-                                <input type="radio" name="semester" value="1" />1
+                                <input type="radio" name="semester" required value="1" />1
                             </label>
                             <label class="btn btn-primary">
                                 <input type="radio" name="semester" value="2" />2
@@ -90,7 +90,7 @@
                         <label for="branch" class="control-label col-sm-3">Branch:</label>
                         <div class="btn-group col-sm-8" data-toggle="buttons" id="branch">
                             <label class="btn btn-primary col-xs-3 col-sm-2">
-                                <input type="radio" name="branch" value="CS" />CSE
+                                <input type="radio" name="branch" required value="CS" />CSE
                             </label>
                             <label class="btn btn-primary col-xs-3 col-sm-2">
                                 <input type="radio" name="branch" value="IS" />ISE
@@ -145,53 +145,104 @@
                     {% csrf_token %}
                     <input type="hidden" name="sort" value="grade">
                     <div class="form-group">
-                        <label for="branch2" class="control-label col-sm-3">Department:</label>
-                        <div class="btn-group col-sm-8" data-toggle="buttons" id="branch2">
+                        <label for="department" class="control-label col-sm-3">Department:</label>
+                        <div class="btn-group col-sm-8" data-toggle="buttons" id="department">
                             <label class="btn btn-primary col-xs-3 col-sm-2">
-                                <input type="radio" name="branch2" value="CS" />CSE
+<<<<<<< HEAD
+                                <input type="radio" name="department" value="CS" />CSE
+=======
+                                <input type="radio" name="branch2" required value="CS" />CSE
+>>>>>>> origin/master
                             </label>
                             <label class="btn btn-primary col-xs-3 col-sm-2">
-                                <input type="radio" name="branch2" value="IS" />ISE
+                                <input type="radio" name="department" value="IS" />ISE
                             </label>
                             <label class="btn btn-primary col-xs-3 col-sm-2">
-                                <input type="radio" name="branch2" value="EC" />EC
+                                <input type="radio" name="department" value="EC" />EC
                             </label>
                             <label class="btn btn-primary col-xs-3 col-sm-2">
-                                <input type="radio" name="branch2" value="ME" />MECH
+                                <input type="radio" name="department" value="ME" />MECH
                             </label>
                             <label class="btn btn-primary col-xs-3 col-sm-2">
-                                <input type="radio" name="branch2" value="EE" />EEE
+                                <input type="radio" name="department" value="EE" />EEE
                             </label>
                             <label class="btn btn-primary col-xs-3 col-sm-2">
-                                <input type="radio" name="branch2" value="CV" />CIVIL
+                                <input type="radio" name="department" value="CV" />CIVIL
                             </label>
                             <label class="btn btn-primary col-xs-3 col-sm-2">
-                                <input type="radio" name="branch2" value="TC" />TC
+                                <input type="radio" name="department" value="TC" />TC
                             </label>
                             <label class="btn btn-primary col-xs-3 col-sm-2">
-                                <input type="radio" name="branch2" value="IT" />IT
+                                <input type="radio" name="department" value="IT" />IT
                             </label>
                             <label class="btn btn-primary col-xs-3 col-sm-2">
-                                <input type="radio" name="branch2" value="IM" />IEM
+                                <input type="radio" name="department" value="IM" />IEM
                             </label>
                             <label class="btn btn-primary col-xs-3 col-sm-2">
-                                <input type="radio" name="branch2" value="CH" />CHEM
+                                <input type="radio" name="department" value="CH" />CHEM
                             </label>
                             <label class="btn btn-primary col-xs-3 col-sm-2">
-                                <input type="radio" name="branch2" value="ML" />ML
+                                <input type="radio" name="department" value="ML" />ML
                             </label>
                             <label class="btn btn-primary col-xs-3 col-sm-2">
-                                <input type="radio" name="branch2" value="BT" />BT
+                                <input type="radio" name="department" value="BT" />BT
                             </label>
                             <label class="btn btn-primary col-xs-3 col-sm-2">
-                                <input type="radio" name="branch2" value="HS" />HSS
+                                <input type="radio" name="department" value="HS" />HSS
                             </label>
+                            <label class="btn btn-primary col-xs-4 col-sm-3">
+                                <input type="radio" name="department" value="FY" id="first-year" />First Year
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div id="first-year-subjects">
+                        <div class="form-group">
+                            <label for="fybranch" class="control-label col-sm-3">Branch:</label>
+                            <div class="btn-group col-sm-8" data-toggle="buttons" id="fybranch">
+                                <label class="btn btn-primary col-xs-3 col-sm-2">
+                                    <input type="radio" name="fybranch" value="CS" />CSE
+                                </label>
+                                <label class="btn btn-primary col-xs-3 col-sm-2">
+                                    <input type="radio" name="fybranch" value="IS" />ISE
+                                </label>
+                                <label class="btn btn-primary col-xs-3 col-sm-2">
+                                    <input type="radio" name="fybranch" value="EC" />EC
+                                </label>
+                                <label class="btn btn-primary col-xs-3 col-sm-2">
+                                    <input type="radio" name="fybranch" value="ME" />MECH
+                                </label>
+                                <label class="btn btn-primary col-xs-3 col-sm-2">
+                                    <input type="radio" name="fybranch" value="EE" />EEE
+                                </label>
+                                <label class="btn btn-primary col-xs-3 col-sm-2">
+                                    <input type="radio" name="fybranch" value="CV" />CIVIL
+                                </label>
+                                <label class="btn btn-primary col-xs-3 col-sm-2">
+                                    <input type="radio" name="fybranch" value="TC" />TC
+                                </label>
+                                <label class="btn btn-primary col-xs-3 col-sm-2">
+                                    <input type="radio" name="fybranch" value="IT" />IT
+                                </label>
+                                <label class="btn btn-primary col-xs-3 col-sm-2">
+                                    <input type="radio" name="fybranch" value="IM" />IEM
+                                </label>
+                                <label class="btn btn-primary col-xs-3 col-sm-2">
+                                    <input type="radio" name="fybranch" value="CH" />CHEM
+                                </label>
+                                <label class="btn btn-primary col-xs-3 col-sm-2">
+                                    <input type="radio" name="fybranch" value="ML" />ML
+                                </label>
+                                <label class="btn btn-primary col-xs-3 col-sm-2">
+                                    <input type="radio" name="fybranch" value="BT" />BT
+                                </label>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-xs-3" for="subject-list">Subject:</label>
                         <div class="col-sm-5 col-sm-offset-1">
-                            <select name="course_code" class="form-control" id="subject-list"></select>
+                            <select name="course_code" class="form-control" required id="subject-list"></select>
                         </div>
 
                     </div>
@@ -209,20 +260,22 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script>
             $(document).ready(function(){
-                $("input[name=branch2]").change(function(){
-                        $.ajax({url: "{% url 'results_app:get_subjects' %}", type: "POST", data: {csrfmiddlewaretoken: "{{csrf_token}}", branch: $("input[name=branch2]:checked").val()}, success: function(result){
-                            $("#subject-list").html(result);
-                        }});
-                });
-
+                $("input").prop('checked', false);
             });
-            $(document).ready(function(){
-                    if ($("input[name=branch2]:checked").val()) {
-                        $.ajax({url: "{% url 'results_app:get_subjects' %}", type: "POST", data: {csrfmiddlewaretoken: "{{csrf_token}}", branch: $("input[name=branch2]:checked").val()}, success: function(result){
-                            $("#subject-list").html(result);
-                        }});
-                    }
-
+            $("#first-year-subjects").hide();
+            $('#first-year').change(function(){
+                if($('#first-year').is(':checked')) {
+                    $('#first-year-subjects').show();
+                }
             });
+            $("input[name=department]").change(function(){
+                    $.ajax({url: "{% url 'results_app:get_subjects' %}", type: "POST", data: {csrfmiddlewaretoken: "{{csrf_token}}", department: $("input[name=department]:checked").val()}, success: function(result){
+                        $("#subject-list").html(result);
+                    }});
+            });
+            
+
+            
 </script>
+    
 {% endblock %}

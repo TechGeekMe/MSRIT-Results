@@ -21,9 +21,16 @@ class ResultAdmin(admin.ModelAdmin):
         return obj.student.name
     
 class SubjectListAdmin(admin.ModelAdmin):
-    list_display = ('course_code', 'subject_name', 'branch_code')
+    list_display = ('course_code', 'subject_name', 'department_code', 'first_year')
+    search_fields = ['branch_code']
 
+class SubjectAdmin(admin.ModelAdmin):
+    list_display = ('usn',)
+    search_fields = ['course_code']
+    def usn(self, obj):
+        return obj.result.student.usn
+    
 admin.site.register(Student, StudentAdmin)
 admin.site.register(Result, ResultAdmin)
-admin.site.register(Subject)
+admin.site.register(Subject, SubjectAdmin)
 admin.site.register(SubjectList, SubjectListAdmin)

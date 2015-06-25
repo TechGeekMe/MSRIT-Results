@@ -33,6 +33,7 @@ class Subject(models.Model):
 class SubjectList(models.Model):
     course_code = models.CharField(max_length=15, primary_key=True)
     subject_name = models.CharField(max_length=50)
-    branch_code = models.CharField(max_length=2)
+    department_code = models.CharField(max_length=2)
+    first_year = models.BooleanField()
     
     
