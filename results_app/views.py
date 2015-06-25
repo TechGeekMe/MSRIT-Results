@@ -91,6 +91,8 @@ def sem_results(request):
     sem = request.POST['semester']
     branch = request.POST['branch']
     results = Result.objects.filter(student__branch_code=branch, semester=sem)
+    if results.count() == 0:
+        return HttpResponseRedirect(reverse('results_app:student_not_found'))
     sort = request.POST['sort']
     if sort == 'name':
         results = results.order_by('student__name')
@@ -101,23 +103,33 @@ def sem_results(request):
     return render(request, 'results_app/sem_results.html', {'results': results, 'semester': sem, 'branch': branch, 'branch_name': results[0].student.department, 'sort': sort})
 
 def get_subjects(request):
-    branch = request.POST['branch']
-    subjects = SubjectList.objects.filter(branch_code=branch)
+    department = request.POST['department']
+    if department == 'FY':
+        subjects = SubjectList.objects.filter(first_year=True)
+    else:
+        subjects = SubjectList.objects.filter(department_code=department, first_year=False)
     resp = ''
     for subject in subjects:
         resp += "<option value=\"%s\">%s</option>"% (subject.course_code, subject.subject_name)
     return HttpResponse(resp)
 
 def subject_results(request):
+    department = request.POST['department']
     course_code = request.POST['course_code']
     sort = request.POST['sort']
-    subjects = Subject.objects.filter(course_code=course_code)
+    fybranch = request.POST['fybranch']
+    if department == 'FY':
+        subjects = Subject.objects.filter(course_code=course_code, result__student__branch_code=fybranch)
+    else:
+        subjects = Subject.objects.filter(course_code=course_code)
+    if subjects.count() == 0:
+        return HttpResponseRedirect(reverse('results_app:student_not_found'))        
     if sort == 'name':
         subjects = subjects.order_by('result__student__name')
-    if sort == 'grade':
+    else:
         subjects = subjects.order_by('-grade_point')
     
-    return render(request, 'results_app/subject_results.html', {'course_code': course_code, 'subject_name': subjects[0].subject_name, 'subjects': subjects, 'sort': sort})
+    return render(request, 'results_app/subject_results.html', {'course_code': course_code, 'subject_name': subjects[0].subject_name, 'subjects': subjects, 'sort': sort, 'department': department, 'fybranch': fybranch})
 
 def custom_404(request):
     return render(request, 'results_app/404.html')
