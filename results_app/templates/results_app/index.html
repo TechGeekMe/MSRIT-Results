@@ -196,6 +196,7 @@
                         <div class="form-group">
                             <label for="fybranch" class="control-label col-sm-3">Branch:</label>
                             <div class="btn-group col-sm-8" data-toggle="buttons" id="fybranch">
+                                <input type="radio" id="dummy" name="fybranch" value="" style="display:none;"/>
                                 <label class="btn btn-primary col-xs-3 col-sm-2">
                                     <input type="radio" name="fybranch" value="CS" id="fycs" />CSE
                                 </label>
@@ -257,7 +258,10 @@
 <script>
             $(document).ready(function(){
                 $("input").prop('checked', false);
+                $("#dummy").prop('checked', true);
                 $("#first-year-subjects").hide();
+                
+                
             });
             $("input[name=department]").change(function(){
                 if ($('#first-year').is(':checked')) {

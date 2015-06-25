@@ -117,20 +117,20 @@ def subject_results(request):
     department = request.POST['department']
     course_code = request.POST['course_code']
     sort = request.POST['sort']
-    dic = {}
-    if 'fybranch' in request.POST:
-        fybranch = request.POST['fybranch']
-        dic.update({'fybranch': fybranch})
-        subjects = Subject.objects.filter(course_code=course_code, result__student__branch_code=fybranch)       
-    else:
+    fybranch = request.POST['fybranch']
+    if fybranch == '':
         subjects = Subject.objects.filter(course_code=course_code)
+    else:
+        subjects = Subject.objects.filter(course_code=course_code, result__student__branch_code=fybranch)       
     if subjects.count() == 0:
         return HttpResponseRedirect(reverse('results_app:student_not_found'))
-    dic.update({'course_code': course_code, 'subject_name': subjects[0].subject_name, 'subjects': subjects, 'sort': sort, 'department': department})
+    
     if sort == 'name':
         subjects = subjects.order_by('result__student__name')
     else:
         subjects = subjects.order_by('-grade_point')
+
+    dic = {'course_code': course_code, 'subject_name': subjects[0].subject_name, 'subjects': subjects, 'sort': sort, 'department': department, 'fybranch': fybranch}
         
     return render(request, 'results_app/subject_results.html', dic)
 
