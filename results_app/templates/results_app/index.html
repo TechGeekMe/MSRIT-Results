@@ -13,7 +13,7 @@
                     <div class="form-group">
                         <div class="col-xs-offset-1 col-xs-10 col-sm-6 col-sm-offset-3 input-group">
                             <span class="input-group-addon">1MS</span>
-                            <input type="text" class="form-control" id="usn" placeholder="USN" name="usn" style="text-transform: uppercase;" required="required" />
+                            <input type="text" class="form-control" id="usn" placeholder="USN" name="usn" style="text-transform: uppercase;" required="required" pattern="^\d\d[a-z A-Z][a-z A-Z]\d\d\d"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -148,11 +148,7 @@
                         <label for="department" class="control-label col-sm-3">Department:</label>
                         <div class="btn-group col-sm-8" data-toggle="buttons" id="department">
                             <label class="btn btn-primary col-xs-3 col-sm-2">
-<<<<<<< HEAD
-                                <input type="radio" name="department" value="CS" />CSE
-=======
-                                <input type="radio" name="branch2" required value="CS" />CSE
->>>>>>> origin/master
+                                <input type="radio" name="department" value="CS" required="required" />CSE
                             </label>
                             <label class="btn btn-primary col-xs-3 col-sm-2">
                                 <input type="radio" name="department" value="IS" />ISE
@@ -201,7 +197,7 @@
                             <label for="fybranch" class="control-label col-sm-3">Branch:</label>
                             <div class="btn-group col-sm-8" data-toggle="buttons" id="fybranch">
                                 <label class="btn btn-primary col-xs-3 col-sm-2">
-                                    <input type="radio" name="fybranch" value="CS" />CSE
+                                    <input type="radio" name="fybranch" value="CS" id="fycs" />CSE
                                 </label>
                                 <label class="btn btn-primary col-xs-3 col-sm-2">
                                     <input type="radio" name="fybranch" value="IS" />ISE
@@ -266,6 +262,7 @@
             $('#first-year').change(function(){
                 if($('#first-year').is(':checked')) {
                     $('#first-year-subjects').show();
+                    $('#fycs').prop('required', true);
                 }
             });
             $("input[name=department]").change(function(){
