@@ -70,7 +70,7 @@ def fetch_result(usn):
     fr.usn = row_data[3].get_text()
     fr.usn = re.sub(r'^USN : ', '', fr.usn)
     fr.usn = fr.usn.upper()
-    fr.branch_code = fr.usn[5:7]
+    fr.branch_code = fr.usn[5:7] if fr.usn[5:7] != 'EI' else 'IT'
 
     # Extracting department
     
