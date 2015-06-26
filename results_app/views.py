@@ -139,6 +139,9 @@ def custom_404(request):
 
 def custom_500(request):
     return render(request, 'results_app/404.html')
+
+def disclaimer(request):
+    return render(request, 'results_app/disclaimer.html')
     
     
     
