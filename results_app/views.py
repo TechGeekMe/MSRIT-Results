@@ -8,10 +8,6 @@ from .models import Student, Result, Subject, SubjectList
 
 from . import add_result
 
-import requests
-
-from bs4 import BeautifulSoup
-
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
