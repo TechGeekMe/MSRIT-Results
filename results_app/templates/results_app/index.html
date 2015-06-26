@@ -262,17 +262,18 @@
 <script>
             $(document).ready(function(){
                 $("input").prop('checked', false);
-                $("#dummy").prop('checked', true);
                 $("#first-year-subjects").hide();
                 
                 
             });
             $("input[name=department]").change(function(){
                 if ($('#first-year').is(':checked')) {
+                    $("#dummy").prop('checked', false);
                     $('#first-year-subjects').show();
                     $('#fycs').prop('required', true);
                 }               
                 else {
+                    $("#dummy").prop('checked', true);
                     $('#first-year-subjects').hide();
                     $('#fycs').prop('required', false);
                 }
