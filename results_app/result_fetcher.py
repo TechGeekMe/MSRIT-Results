@@ -45,7 +45,7 @@ def fetch_result(usn):
     #Get html page
     
     payload = {'usn': usn, 'option': 'com_examresult', 'task': 'getResult'}
-    r = requests.post("http://exam.msrit.edu/index.php", data=payload, timeout=60)
+    r = requests.post("http://exam.msrit.edu/index.php", data=payload, timeout=600)
     data = r.text
     
     # Feed html to BeautifulSoup
