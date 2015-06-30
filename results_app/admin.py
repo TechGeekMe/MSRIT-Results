@@ -29,6 +29,8 @@ class SubjectAdmin(admin.ModelAdmin):
     search_fields = ['course_code']
     def usn(self, obj):
         return obj.result.student.usn
+def unmark(modeladmin, request, queryset):
+    queryset.update(first_year=False)
     
 admin.site.register(Student, StudentAdmin)
 admin.site.register(Result, ResultAdmin)
