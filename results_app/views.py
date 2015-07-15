@@ -8,9 +8,6 @@ from .models import Student, Result, Subject, SubjectList
 
 from . import add_result
 
-from django.shortcuts import render_to_response
-from django.template import RequestContext
-
 def index(request):
     return render(request, 'results_app/index.html')
 
