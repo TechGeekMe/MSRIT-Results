@@ -86,7 +86,16 @@ DATABASES = {
         'HOST': 'resultsdb.cninslv9ojgr.us-west-2.rds.amazonaws.com',
         'PORT': '3306'
         
+    },
+    'jan2015': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'students',
+        'USER': 'root',
+        'PASSWORD': '***REMOVED***',
+        'HOST': 'jan2015.cninslv9ojgr.us-west-2.rds.amazonaws.com',
+        'PORT': '3306'
     }
+    
 }
 
 
