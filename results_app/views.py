@@ -20,7 +20,7 @@ def update_db(request, usn_base, first_usn, last_usn):
             return HttpResponse("Over! Stopped at " + str(usn))
         usn = usn_base + str(i).zfill(3)
         # Check if USN already exists
-        if Student.objects.filter(usn=usn):
+        if Student.objects.filter(usn=usn).exists():
             bad_usns = 0
             continue
         try:
