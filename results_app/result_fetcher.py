@@ -10,7 +10,6 @@ class FetchedSubject:
         self.credits_earned = None
         self.grade = None
         self.grade_point = None
-        self.semester = None
     def __unicode__(self):
         return self.course_code + self.subject_name + str(self.credits_registered)\
                + str(self.credits_earned) + self.grade               
@@ -116,7 +115,6 @@ def fetch_result(usn):
         fs.course_code = cols[1].get_text()
         sem = int(re.match(r'[A-Z]+\d', fs.course_code).group()[-1])
         subject_sem[sem] = subject_sem.get(sem, 0) + 1
-        fs.semester = sem;
         fs.subject_name = cols[2].get_text()
         fs.credits_registered = int(float(cols[3].get_text()))
         fs.credits_earned = int(cols[4].get_text())
