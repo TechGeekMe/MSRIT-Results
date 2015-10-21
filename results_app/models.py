@@ -16,6 +16,7 @@ class Result(models.Model):
     sgpa = models.FloatField()
     cgpa = models.FloatField()
     semester = models.IntegerField()
+    date = models.DateField()
     def __unicode__(self):
         return str(self.sgpa)
 
