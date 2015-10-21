@@ -14,5 +14,12 @@ def deploy():
         run('sudo git pull')
         with cd(code_dir+'results'):
             run('sudo touch wsgi.py')
+
+def deploy_migrate():
+    code_dir = '/var/www/html/MSRIT-Results/'
+    with cd(code_dir):
+        run('sudo git pull origin migrate-jan-2015')
+        with cd(code_dir+'results'):
+            run('sudo touch wsgi.py')
         
         
