@@ -47,7 +47,7 @@ class Student2(models.Model):
         
 
 class Result2(models.Model):
-    student = models.OneToOneField(Student, primary_key=True)
+    student = models.OneToOneField(Student2, primary_key=True)
     credits_registered = models.IntegerField()
     credits_earned = models.IntegerField()
     sgpa = models.FloatField()
@@ -58,7 +58,7 @@ class Result2(models.Model):
         db_table = 'results_app_result'
 
 class Subject2(models.Model):
-    result = models.ForeignKey(Result)
+    result = models.ForeignKey(Result2)
     course_code = models.CharField(max_length=15)
     subject_name = models.CharField(max_length=50)
     credits_registered = models.IntegerField()
@@ -67,5 +67,5 @@ class Subject2(models.Model):
     def __unicode__(self):
         return self.subject_name
     class Meta:
-        db_table = 'results_app_result'
+        db_table = 'results_app_subject'
     
