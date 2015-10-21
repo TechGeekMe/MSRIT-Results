@@ -19,7 +19,7 @@ class Command(BaseCommand):
         last_usn = int(last_usn)
         for i in range(first_usn, last_usn):
             if bad_usns > 5:
-                self.stdout.write("Over! Stopped at " + str(usn))
+                return self.stdout.write("Over! Stopped at " + str(usn))
             usn = usn_base + str(i).zfill(3)
             try:
                 add_result.add_usn(usn)
