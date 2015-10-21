@@ -11,7 +11,7 @@ class Command(BaseCommand):
         self.pull(options['branch'][0], options['year'][0])
 
     def pull(self, branch, year):
-        self.update_db('1MS'+year+branch, 0, 10)
+        self.update_db('1MS'+year+branch, 0, 300)
         
     def update_db(self, usn_base, first_usn, last_usn):
         bad_usns = 0
