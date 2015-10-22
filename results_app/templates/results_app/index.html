@@ -62,25 +62,25 @@
                         <div class="col-sm-9">
 
                         <div class="btn-group btn-group-justified" data-toggle="buttons" id="semesters">
-                            <label class="btn btn-primary disabled">
+                            <label class="btn btn-primary">
                                 <input type="radio" name="semester" required value="1" />1
                             </label>
                             <label class="btn btn-primary ">
                                 <input type="radio" name="semester" value="2" />2
                             </label>
-                            <label class="btn btn-primary disabled">
+                            <label class="btn btn-primary">
                                 <input type="radio" name="semester" value="3" />3
                             </label>
                             <label class="btn btn-primary">
                                 <input type="radio" name="semester" value="4" />4
                             </label>
-                            <label class="btn btn-primary disabled">
+                            <label class="btn btn-primary">
                                 <input type="radio" name="semester" value="5" />5
                             </label>
                             <label class="btn btn-primary">
                                 <input type="radio" name="semester" value="6" />6
                             </label>
-                            <label class="btn btn-primary disabled">
+                            <label class="btn btn-primary">
                                 <input type="radio" name="semester" value="7" />7
                             </label>
                             <label class="btn btn-primary">
@@ -201,7 +201,7 @@
                             </label>
                         </div>
                     </div>
-                    
+
                     <div id="first-year-subjects">
                         <div class="form-group">
                             <label for="fybranch" class="control-label col-sm-3">Branch:</label>
@@ -273,15 +273,15 @@
             $(document).ready(function(){
                 $("input").prop('checked', false);
                 $("#first-year-subjects").hide();
-                
-                
+
+
             });
             $("input[name=department]").change(function(){
                 if ($('#first-year').is(':checked')) {
                     $("#dummy").prop('checked', false);
                     $('#first-year-subjects').show();
                     $('#fycs').prop('required', true);
-                }               
+                }
                 else {
                     $("#dummy").prop('checked', true);
                     $('#first-year-subjects').hide();
@@ -291,9 +291,9 @@
                     $("#subject-list").html(result);
                 }});
             });
-            
 
-            
+
+
 </script>
-    
+
 {% endblock %}
