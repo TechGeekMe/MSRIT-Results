@@ -4,11 +4,15 @@ from . import result_fetcher, add_result
 
 class Command(BaseCommand):
     def add_arguments(self, parser):
-        parser.add_argument('branch', nargs=1, type=str)
+        parser.add_argument('--branch', nargs=1, type=str)
         parser.add_argument('year', nargs=1, type=str)
+        parser.add_argument('--diploma', action='store_true')
 
     def handle(self, *args, **options):
-        self.pull(options['branch'][0], options['year'][0])
+        if options['branch']:
+            self.update_db('1MS'+options['year']+options['branch'], 0, 300)
+        else:
+            self.pull(options['branch'][0], options['year'][0])
 
     def pull(self, branch, year):
         self.update_db('1MS'+year+branch, 0, 300)
@@ -26,3 +30,13 @@ class Command(BaseCommand):
                 bad_usns = 0
             except ValueError:
                 bad_usns += 1
+
+    def pull(this, year):
+        branches = ['CS', 'IS', 'IT', 'IM', 'EC', 'CV', 'ME', 'TE', 'CH', 'BT', 'EE', 'ML', 'EI', 'AT']
+        for branch in branches:
+            this.update_db(request, '1MS'+year+branch, 0, 300)
+
+    def pull_dip(this, year):
+        branches = ['CS', 'IS', 'IT', 'IM', 'EC', 'CV', 'ME', 'TE', 'CH', 'BT', 'EE', 'ML', 'EI', 'AT']
+        for branch in branches:
+            this.update_db(request, '1MS'+year+branch, 400, 500)
