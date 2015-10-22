@@ -14,7 +14,7 @@ class Command(BaseCommand):
                 self.update_db('1MS'+options['year']+options['branch'], 400, 500)
             else:
                 self.update_db('1MS'+options['year']+options['branch'], 0, 300)
-        else if options['diploma']:
+        elif options['diploma']:
             self.pull_dip(options['branch'][0], options['year'][0])
         else:
             self.pull(options['branch'][0], options['year'][0])
