@@ -10,7 +10,12 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         if options['branch']:
-            self.update_db('1MS'+options['year']+options['branch'], 0, 300)
+            if options['diploma']:
+                self.update_db('1MS'+options['year']+options['branch'], 400, 500)
+            else:
+                self.update_db('1MS'+options['year']+options['branch'], 0, 300)
+        else if options['diploma']:
+            self.pull_dip(options['branch'][0], options['year'][0])
         else:
             self.pull(options['branch'][0], options['year'][0])
 
