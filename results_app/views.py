@@ -103,7 +103,7 @@ def get_subjects(request):
         subjects = SubjectList.objects.filter(department_code=department, first_year=False)
     resp = ''
     for subject in subjects:
-        resp += "<option value=\"%s\">%s</option>"% (subject.course_code, subject.subject_name)
+        resp += "<option value=\"%s\">%s %s</option>"% (subject.course_code, subject.course_code, subject.subject_name)
     return HttpResponse(resp)
 
 def subject_results(request):
