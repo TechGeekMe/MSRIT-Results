@@ -17,7 +17,7 @@ class Command(BaseCommand):
         elif options['diploma']:
             self.pull_dip(options['year'][0])
         else:
-            self.pull(options['branch'][0], options['year'][0])
+            self.pull(options['year'][0])
         
     def update_db(self, usn_base, first_usn, last_usn):
         bad_usns = 0
@@ -33,12 +33,12 @@ class Command(BaseCommand):
             except ValueError:
                 bad_usns += 1
 
-    def pull(this, year):
+    def pull(self, year):
         branches = ['CS', 'IS', 'IT', 'IM', 'EC', 'CV', 'ME', 'TE', 'CH', 'BT', 'EE', 'ML', 'EI', 'AT']
         for branch in branches:
-            this.update_db('1MS'+year+branch, 0, 300)
+            self.update_db('1MS'+year+branch, 0, 300)
 
     def pull_dip(this, year):
         branches = ['CS', 'IS', 'IT', 'IM', 'EC', 'CV', 'ME', 'TE', 'CH', 'BT', 'EE', 'ML', 'EI', 'AT']
         for branch in branches:
-            this.update_db('1MS'+year+branch, 400, 500)
+            self.update_db('1MS'+year+branch, 400, 500)
