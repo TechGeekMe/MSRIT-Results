@@ -18,7 +18,7 @@ class FetchedSubject:
         return unicode(self).encode('utf-8')
         
 
-class FetchedResult():
+class FetchedResult:
     def __init__(self):
         self.usn = None
         self.name = None
