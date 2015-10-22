@@ -38,7 +38,7 @@ class Command(BaseCommand):
         for branch in branches:
             self.update_db('1MS'+year+branch, 0, 300)
 
-    def pull_dip(this, year):
+    def pull_dip(self, year):
         branches = ['CS', 'IS', 'IT', 'IM', 'EC', 'CV', 'ME', 'TE', 'CH', 'BT', 'EE', 'ML', 'EI', 'AT']
         for branch in branches:
             self.update_db('1MS'+year+branch, 400, 500)
