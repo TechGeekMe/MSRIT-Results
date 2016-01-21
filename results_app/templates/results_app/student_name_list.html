@@ -20,9 +20,7 @@
                         <tr>
                             <td class="text-center"><a href="{% url 'results_app:student_result' student.usn %}" style="text-decoration:none;">{{ student.name }}</a></td>
                             <td class="text-center">
-                                {% for result in student.result_set.all %}
-                                {{ result.semester }}
-                                {% endfor %}
+                                {{ student.result_set.all.0.semester }}
                             </td>
                             <td class="text-center">{{ student.department }}</td>
                         </tr>
