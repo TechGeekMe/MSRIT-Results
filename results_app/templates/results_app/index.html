@@ -8,7 +8,7 @@
         </div>
         <div id="collapse-one" class="panel-collapse collapse in">
             <div class="panel-body">
-                <form role="form" class="form-horizontal" action="{% url 'results_app:usn_search' %}" method="post">
+                <form role="form" class="form-horizontal" action="{% url 'results_app:usn_search' %}" method="get">
                     {% csrf_token %}
                     <div class="form-group">
                         <div class="col-xs-offset-1 col-xs-10 col-sm-6 col-sm-offset-3 input-group">
