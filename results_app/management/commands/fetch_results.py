@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
-from results_app.models import Student, Result, Subject, SubjectList, Student2, Result2, Subject2
+from results_app.models import Student, Result, Subject, SubjectList
 from . import result_fetcher, add_result
 
 class Command(BaseCommand):
