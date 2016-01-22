@@ -1,6 +1,7 @@
 from . import result_fetcher
 from results_app.models import Student, Result, Subject, SubjectList
 from datetime import date
+from django.core.exceptions import ObjectDoesNotExist
 
 def add_usn(usn):
     
@@ -11,7 +12,7 @@ def add_usn(usn):
         raise ValueError("USN %s" % usn)
 
     s = Student.objects.get(usn=usn)
-    if not s:
+    except ObjectDoesNotExist:
         s = Student(usn=r.usn, name=r.name, department=r.department, branch_code=r.branch_code)
         s.save()
         
