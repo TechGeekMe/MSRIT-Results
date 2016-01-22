@@ -59,7 +59,10 @@ def pull_dip(request, year):
 
 def student_result(request, usn):
     check_cookie(request)
-    student = get_object_or_404(Student, pk=usn)
+    try:
+        student = Student.objects.get(pk=usn)
+    except ObjectDoesNotExist:
+        return HttpResponseRedirect(reverse('results_app:student_not_found'))
     result = student.result_set.get(date=date(request.session['term']['year'], request.session['term']['month'], 1))
     subjects = result.subject_set.all()
     
@@ -118,9 +121,9 @@ def subject_results(request):
     sort = request.GET['sort']
     fybranch = request.GET['fybranch']
     if fybranch == '':
-        subjects = Subject.objects.filter(course_code=course_code)
+        subjects = Subject.objects.filter(course_code=course_code, result__date=date(request.session['term']['year'], request.session['term']['month'], 1))
     else:
-        subjects = Subject.objects.filter(course_code=course_code, result__student__branch_code=fybranch)       
+        subjects = Subject.objects.filter(course_code=course_code, result__student__branch_code=fybranch, result__date=date(request.session['term']['year'], request.session['term']['month'], 1))       
     if subjects.count() == 0:
         return HttpResponseRedirect(reverse('results_app:student_not_found'))
     
