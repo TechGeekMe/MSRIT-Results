@@ -11,11 +11,7 @@ from datetime import date
 from . import add_result
 
 def index(request):
-    if 'term' not in request.session:
-        request.session['term'] = {'month': 1, 'year': 2016}
-    if 'term' in request.POST:
-        term = {'month': int(request.POST['term'][0:2]), 'year': int(request.POST['term'][3:7])}
-        request.session['term'] = term
+    check_cookie(request);
     return render(request, 'results_app/index.html', {'test': request.session['term']})
 
 def update_db(request, usn_base, first_usn, last_usn):
@@ -62,6 +58,7 @@ def pull_dip(request, year):
 
 
 def student_result(request, usn):
+    check_cookie(request)
     student = get_object_or_404(Student, pk=usn)
     result = student.result_set.get(date=date(request.session['term']['year'], request.session['term']['month'], 1))
     subjects = result.subject_set.all()
@@ -69,13 +66,14 @@ def student_result(request, usn):
     return render(request, 'results_app/student_result.html', {'student': student, 'result': result, 'subjects': subjects})
 
 def usn_search(request):
-    usn = '1MS' + request.POST['usn'].upper()
+    check_cookie(request)
+    usn = '1MS' + request.GET['usn'].upper()
     return HttpResponseRedirect(reverse('results_app:student_result', args=(usn, ))) 
-
     
 def student_name_list(request):
+    check_cookie(request)
     #add redirect for no name match found
-    name = request.POST['student_name']
+    name = request.GET['student_name']
     students = Student.objects.filter(name__icontains=name)
     if students.count() == 0:
         return HttpResponseRedirect(reverse('results_app:student_not_found'))
@@ -88,12 +86,13 @@ def student_not_found(request):
     return render(request, 'results_app/student_not_found.html')
 
 def sem_results(request):
-    sem = request.POST['semester']
-    branch = request.POST['branch']
+    check_cookie(request)
+    sem = request.GET['semester']
+    branch = request.GET['branch']
     results = Result.objects.filter(student__branch_code=branch, semester=sem, date=date(request.session['term']['year'], request.session['term']['month'], 1))
     if results.count() == 0:
         return HttpResponseRedirect(reverse('results_app:student_not_found'))
-    sort = request.POST['sort']
+    sort = request.GET['sort']
     if sort == 'name':
         results = results.order_by('student__name')
     elif sort == 'sgpa':
@@ -114,9 +113,10 @@ def get_subjects(request):
     return HttpResponse(resp)
 
 def subject_results(request):
-    course_code = request.POST['course_code']
-    sort = request.POST['sort']
-    fybranch = request.POST['fybranch']
+    check_cookie(request)
+    course_code = request.GET['course_code']
+    sort = request.GET['sort']
+    fybranch = request.GET['fybranch']
     if fybranch == '':
         subjects = Subject.objects.filter(course_code=course_code)
     else:
@@ -141,6 +141,14 @@ def custom_500(request):
 
 def disclaimer(request):
     return render(request, 'results_app/disclaimer.html')
+
+def check_cookie(request):
+    if 'term' not in request.session:
+        request.session['term'] = {'month': 1, 'year': 2016}
+    if 'term' in request.POST:
+        term = {'month': int(request.POST['term'][0:2]), 'year': int(request.POST['term'][3:7])}
+        request.session['term'] = term
+    
     
     
     
