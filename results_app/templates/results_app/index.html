@@ -30,7 +30,7 @@
         </div>
         <div id="collapse-two" class="panel-collapse collapse in">
             <div class="panel-body">
-                <form role="form" class="form-horizontal" action="{% url 'results_app:student_name_list' %}" method="post">
+                <form role="form" class="form-horizontal" action="{% url 'results_app:student_name_list' %}" method="get">
                     {% csrf_token %}
                     <div class="form-group">
                         <div class="col-xs-offset-1 col-xs-10 col-sm-6 col-sm-offset-3 input-group  input-group">
@@ -54,7 +54,7 @@
         </div>
         <div id="collapse-three" class="panel-collapse collapse in">
             <div class="panel-body">
-                <form role="form" class="form-horizontal" action="{% url 'results_app:sem_results' %}" method="post">
+                <form role="form" class="form-horizontal" action="{% url 'results_app:sem_results' %}" method="get">
                     {% csrf_token %}
                     <input type="hidden" name="sort" value="sgpa">
                     <div class="form-group">
@@ -148,7 +148,7 @@
         </div>
         <div id="collapse-four" class="panel-collapse collapse in">
             <div class="panel-body">
-                <form role="form" class="form-horizontal" action="{% url 'results_app:subject_results' %}" method="post">
+                <form role="form" class="form-horizontal" action="{% url 'results_app:subject_results' %}" method="get">
                     {% csrf_token %}
                     <input type="hidden" name="sort" value="grade">
                     <div class="form-group">
