@@ -61,10 +61,12 @@ def student_result(request, usn):
     check_cookie(request)
     try:
         student = Student.objects.get(pk=usn)
+        result = student.result_set.get(date=date(request.session['term']['year'], request.session['term']['month'], 1))
+        subjects = result.subject_set.all()
     except ObjectDoesNotExist:
         return HttpResponseRedirect(reverse('results_app:student_not_found'))
-    result = student.result_set.get(date=date(request.session['term']['year'], request.session['term']['month'], 1))
-    subjects = result.subject_set.all()
+
+
     
     return render(request, 'results_app/student_result.html', {'student': student, 'result': result, 'subjects': subjects})
 
