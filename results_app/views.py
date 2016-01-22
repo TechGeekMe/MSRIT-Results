@@ -6,10 +6,17 @@ from django.core.urlresolvers import reverse
 
 from .models import Student, Result, Subject, SubjectList
 
+from datetime import date
+
 from . import add_result
 
 def index(request):
-    return render(request, 'results_app/index.html')
+    if 'term' not in request.session:
+        request.session['term'] = {'month': 1, 'year': 2016}
+    if 'term' in request.POST:
+        term = {'month': int(request.POST['term'][0:2]), 'year': int(request.POST['term'][3:7])}
+        request.session['term'] = term
+    return render(request, 'results_app/index.html', {'test': request.session['term']})
 
 def update_db(request, usn_base, first_usn, last_usn):
     bad_usns = 0
@@ -56,7 +63,7 @@ def pull_dip(request, year):
 
 def student_result(request, usn):
     student = get_object_or_404(Student, pk=usn)
-    result = student.result_set.all()[0]
+    result = student.result_set.get(date=date(request.session['term']['year'], request.session['term']['month'], 1))
     subjects = result.subject_set.all()
     
     return render(request, 'results_app/student_result.html', {'student': student, 'result': result, 'subjects': subjects})
@@ -83,7 +90,7 @@ def student_not_found(request):
 def sem_results(request):
     sem = request.POST['semester']
     branch = request.POST['branch']
-    results = Result.objects.filter(student__branch_code=branch, semester=sem)
+    results = Result.objects.filter(student__branch_code=branch, semester=sem, date=date(request.session['term']['year'], request.session['term']['month'], 1))
     if results.count() == 0:
         return HttpResponseRedirect(reverse('results_app:student_not_found'))
     sort = request.POST['sort']
