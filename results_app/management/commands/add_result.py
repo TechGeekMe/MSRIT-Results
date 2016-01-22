@@ -4,10 +4,6 @@ from datetime import date
 from django.core.exceptions import ObjectDoesNotExist
 
 def add_usn(usn):
-
-    s = None
-    r = None
-    
     try:
         s = Student.objects.get(usn=usn)
         if not Result.objects.filter(student=s, date=date(2016, 1, 1)).exists():
