@@ -10,8 +10,9 @@ def add_usn(usn):
     # Check if the USN is non-existent
     if r is None:
         raise ValueError("USN %s" % usn)
-
-    s = Student.objects.get(usn=usn)
+    s = None
+    try:
+        s = Student.objects.get(usn=usn)
     except ObjectDoesNotExist:
         s = Student(usn=r.usn, name=r.name, department=r.department, branch_code=r.branch_code)
         s.save()
