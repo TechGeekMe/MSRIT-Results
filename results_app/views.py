@@ -4,6 +4,8 @@ from django.http import HttpResponseRedirect, HttpResponse
 
 from django.core.urlresolvers import reverse
 
+from django.core.exceptions import ObjectDoesNotExist
+
 from .models import Student, Result, Subject, SubjectList
 
 from datetime import date
@@ -61,13 +63,14 @@ def student_result(request, usn):
     check_cookie(request)
     try:
         student = Student.objects.get(pk=usn)
-        result = student.result_set.get(date=date(request.session['term']['year'], request.session['term']['month'], 1))
-        subjects = result.subject_set.all()
     except ObjectDoesNotExist:
         return HttpResponseRedirect(reverse('results_app:student_not_found'))
-
-
+    try:
+        result = student.result_set.get(date=date(request.session['term']['year'], request.session['term']['month'], 1))
+    except ObjectDoesNotExist:
+        return HttpResponseRedirect(reverse('results_app:result_not_found'))
     
+    subjects = result.subject_set.all()
     return render(request, 'results_app/student_result.html', {'student': student, 'result': result, 'subjects': subjects})
 
 def usn_search(request):
@@ -89,6 +92,9 @@ def student_name_list(request):
         
 def student_not_found(request):
     return render(request, 'results_app/student_not_found.html')
+
+def result_not_found(request):
+    return render(request, 'results_app/result_not_found.html')
 
 def sem_results(request):
     check_cookie(request)
