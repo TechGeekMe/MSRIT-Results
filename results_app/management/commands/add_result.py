@@ -1,6 +1,6 @@
 from . import result_fetcher
 from results_app.models import Student, Result, Subject, SubjectList
-import datetime
+from datetime import date
 
 def add_usn(usn):
     
@@ -10,15 +10,15 @@ def add_usn(usn):
     if r is None:
         raise ValueError("USN %s" % usn)
 
-    s = Student.objects.filter(usn=usn)
+    s = Student.objects.get(usn=usn)
     if not s:
         s = Student(usn=r.usn, name=r.name, department=r.department, branch_code=r.branch_code)
         s.save()
     else:
         s = s[0]
         
-    if not Result.objects.filter(student=s, date=datetime.date(2015, 1, 1)).exists():
-        result = Result(student=s, credits_registered=r.credits_registered, credits_earned=r.credits_earned, sgpa=r.sgpa, cgpa=r.cgpa, semester=r.semester if r.semester <= 8 else 8, date=datetime.date.today())
+    if not Result.objects.filter(student=s, date=datetime.date(2016, 1, 1)).exists():
+        result = Result(student=s, credits_registered=r.credits_registered, credits_earned=r.credits_earned, sgpa=r.sgpa, cgpa=r.cgpa, semester=r.semester if r.semester <= 8 else 8, date=date(2016, 1, 1))
         result.save()
         
         for sub in r.subjects:
