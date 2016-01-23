@@ -6,7 +6,7 @@
     </div>
     <div class="panel-body">
         <div class="row">
-            <form action="{% url 'results_app:subject_results' %}" method="post">
+            <form method="post">
                 {% csrf_token %}
                 <div class="form-group col-xs-offset-7 col-xs-5">
                     <select name="sort" class="form-control" onchange="this.form.submit()">
@@ -14,8 +14,6 @@
                         <option value="grade" id="grade">Grade</option>
                     </select>
                 </div>
-                <input type="hidden" name="course_code" value="{{ course_code }}">
-                <input type="hidden" name="fybranch" value="{{ fybranch }}">
             </form>
         </div>
         <div class="table-responsive">

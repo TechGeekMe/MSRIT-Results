@@ -98,12 +98,12 @@ def result_not_found(request):
     return render(request, 'results_app/result_not_found.html')
 
 def get_sem_results(request):
-    check_cookie(request)
     sem = request.GET['semester']
     branch = request.GET['branch']
     return HttpResponseRedirect(reverse('results_app:sem_results', args=(sem, branch)))
 
 def sem_results(request, sem, branch):
+    check_cookie(request)
     results = Result.objects.filter(student__branch_code=branch, semester=sem, date=date(request.session['term']['year'], request.session['term']['month'], 1))
     if results.count() == 0:
         return HttpResponseRedirect(reverse('results_app:student_not_found'))                              
@@ -115,7 +115,7 @@ def sem_results(request, sem, branch):
     elif sort == 'cgpa':
         results = results.order_by('-cgpa')
     return render(request, 'results_app/sem_results.html', {'results': results, 'semester': sem, 'branch': branch, 'branch_name': results[0].student.department, 'sort': sort})
-    
+ 
 def get_subjects(request):
     department = request.POST['department']
     if department == 'FY':
@@ -127,12 +127,18 @@ def get_subjects(request):
         resp += "<option value=\"%s\">%s %s</option>"% (subject.course_code, subject.course_code, subject.subject_name)
     return HttpResponse(resp)
 
-def subject_results(request):
-    check_cookie(request)
+def get_subject_results(request):
     course_code = request.GET['course_code']
-    sort = request.GET['sort']
     fybranch = request.GET['fybranch']
-    if fybranch == '':
+    if fybranch == 'NO':
+        return HttpResponseRedirect(reverse('results_app:subject_results', args=(course_code, )))
+    else:
+        return HttpResponseRedirect(reverse('results_app:subject_results_fy', args=(course_code, fybranch)))
+    
+def subject_results(request, course_code, fybranch='NO'):
+    check_cookie(request)
+    sort = request.GET.get('sort', 'grade')
+    if fybranch == 'NO':
         subjects = Subject.objects.filter(course_code=course_code, result__date=date(request.session['term']['year'], request.session['term']['month'], 1))
     else:
         subjects = Subject.objects.filter(course_code=course_code, result__student__branch_code=fybranch, result__date=date(request.session['term']['year'], request.session['term']['month'], 1))       
