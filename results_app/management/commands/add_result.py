@@ -24,7 +24,7 @@ def add_usn(usn):
         put_result(s, r)
 
 def put_result(s, r):
-        result = Result(student=s, credits_registered=r.credits_registered, credits_earned=r.credits_earned, sgpa=r.sgpa, cgpa=r.cgpa, semester=r.semester if r.semester <= 8 else 8, date=date(settings.TERM_YEAR, settings.TERM_MONTH, 1))
+        result = Result(student=s, credits_registered=r.credits_registered, credits_earned=r.credits_earned, sgpa=r.sgpa, cgpa=r.cgpa, semester=r.semester, date=date(settings.TERM_YEAR, settings.TERM_MONTH, 1))
         result.save()
         
         for sub in r.subjects:
