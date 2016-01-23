@@ -147,7 +147,7 @@
         </div>
         <div id="collapse-four" class="panel-collapse collapse in">
             <div class="panel-body">
-                <form role="form" class="form-horizontal" action="{% url 'results_app:subject_results' %}" method="get">
+                <form role="form" class="form-horizontal" action="{% url 'results_app:get_subject_results' %}" method="get">
                     {% csrf_token %}
                     <input type="hidden" name="sort" value="grade">
                     <div class="form-group">
@@ -205,7 +205,7 @@
                         <div class="form-group">
                             <label for="fybranch" class="control-label col-sm-3">Branch:</label>
                             <div class="btn-group col-sm-8" data-toggle="buttons" id="fybranch">
-                                <input type="radio" id="dummy" name="fybranch" value="" style="display:none;"/>
+                                <input type="radio" id="dummy" name="fybranch" value="NO" style="display:none;"/>
                                 <label class="btn btn-primary col-xs-3 col-sm-2">
                                     <input type="radio" name="fybranch" value="CS" id="fycs" />CSE
                                 </label>
