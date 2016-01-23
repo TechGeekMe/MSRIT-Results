@@ -137,7 +137,7 @@ def get_subject_results(request):
     
 def subject_results(request, course_code, fybranch='NO'):
     check_cookie(request)
-    sort = request.GET.get('sort', 'grade')
+    sort = request.POST.get('sort', 'grade')
     if fybranch == 'NO':
         subjects = Subject.objects.filter(course_code=course_code, result__date=date(request.session['term']['year'], request.session['term']['month'], 1))
     else:
