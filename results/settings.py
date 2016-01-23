@@ -15,7 +15,6 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
@@ -100,6 +99,11 @@ DATABASES = {
 # Session
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+# Default term
+
+TERM_YEAR = 2016
+TERM_MONTH = 1
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
