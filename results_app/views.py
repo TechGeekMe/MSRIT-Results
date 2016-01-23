@@ -6,6 +6,8 @@ from django.core.urlresolvers import reverse
 
 from django.core.exceptions import ObjectDoesNotExist
 
+from django.conf import settings
+
 from .models import Student, Result, Subject, SubjectList
 
 from datetime import date
@@ -155,7 +157,7 @@ def disclaimer(request):
 
 def check_cookie(request):
     if 'term' not in request.session:
-        request.session['term'] = {'month': 1, 'year': 2016}
+        request.session['term'] = {'month': settings.TERM_MONTH, 'year': settings.TERM_YEAR}
     if 'term' in request.POST:
         term = {'month': int(request.POST['term'][0:2]), 'year': int(request.POST['term'][3:7])}
         request.session['term'] = term

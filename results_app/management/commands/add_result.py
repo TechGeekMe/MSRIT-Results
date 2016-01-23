@@ -2,13 +2,14 @@ from . import result_fetcher
 from results_app.models import Student, Result, Subject, SubjectList
 from datetime import date
 from django.core.exceptions import ObjectDoesNotExist
+from django.conf import settings
 
 def add_usn(usn):
     try:
         s = Student.objects.get(usn=usn)
-        if not Result.objects.filter(student=s, date=date(2016, 1, 1)).exists():
+        if not Result.objects.filter(student=s, date=date(settings.TERM_YEAR, settings.TERM_MONTH, 1)).exists():
             r = result_fetcher.fetch_result(usn)
-            # Check if the USN is non-existent
+            # Check if the USN is non-existent for that term
             if r is None:
                 raise ValueError("USN %s" % usn)
             put_result(s, r)
@@ -23,7 +24,7 @@ def add_usn(usn):
         put_result(s, r)
 
 def put_result(s, r):
-        result = Result(student=s, credits_registered=r.credits_registered, credits_earned=r.credits_earned, sgpa=r.sgpa, cgpa=r.cgpa, semester=r.semester if r.semester <= 8 else 8, date=date(2016, 1, 1))
+        result = Result(student=s, credits_registered=r.credits_registered, credits_earned=r.credits_earned, sgpa=r.sgpa, cgpa=r.cgpa, semester=r.semester if r.semester <= 8 else 8, date=date(settings.TERM_YEAR, settings.TERM_MONTH, 1))
         result.save()
         
         for sub in r.subjects:
