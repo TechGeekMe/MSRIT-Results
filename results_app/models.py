@@ -17,6 +17,8 @@ class Result(models.Model):
     cgpa = models.FloatField()
     semester = models.IntegerField()
     date = models.DateField()
+    class Meta:
+      get_latest_by = 'date'
     def __unicode__(self):
         return str(self.sgpa)
 
