@@ -117,9 +117,13 @@ def fetch_result(usn):
         fs.course_code = cols[1].get_text()
         sem = int(re.match(r'[A-Z]+\d', fs.course_code).group()[-1])
         fs.first_year = True if sem <= 2 else False
+        # If it is not a elective
         if not re.match(r'^[A-Z][A-Z]+E', fs.course_code):
             subject_sem[sem] = subject_sem.get(sem, 0) + 1
+        #If it is an elective
         else:
+            fs.first_year = False
+        if fs.branch_code in ['MB', 'MC']:
             fs.first_year = False
         fs.semester = sem;
         fs.subject_name = cols[2].get_text()
