@@ -3,6 +3,7 @@ from results_app.models import Student, Result, Subject, SubjectList
 from datetime import date
 from django.core.exceptions import ObjectDoesNotExist
 from django.conf import settings
+import re
 
 def add_usn(usn):
     try:
@@ -34,6 +35,6 @@ def put_result(s, r):
             subject.save()
             if not SubjectList.objects.filter(pk=sub.course_code).exists():
                 subjectlist = SubjectList(course_code = sub.course_code,
-                                          subject_name=sub.subject_name, department_code=sub.course_code[:2], first_year=True if sub.semester <= 2 and not re.match(r'^[A-Z][A-Z]+E', sub.course_code) else False)
+                                          subject_name=sub.subject_name, department_code=sub.course_code[:2], first_year=sub.first_year)
                 subjectlist.save()
     
