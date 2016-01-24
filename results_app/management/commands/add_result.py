@@ -3,6 +3,7 @@ from results_app.models import Student, Result, Subject, SubjectList
 from datetime import date
 from django.core.exceptions import ObjectDoesNotExist
 from django.conf import settings
+import re
 
 def add_usn(usn):
     try:
