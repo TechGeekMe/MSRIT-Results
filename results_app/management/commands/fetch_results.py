@@ -11,7 +11,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         if options['branch']:
             if options['branch'][0] == 'MCA' or options['branch'][0] == 'MBA':
-                self.update_db_mca_or_mba('1MS'+options['year'][0]+options['branch'][0], 0, 70)
+                self.update_db_mca_or_mba('1MS'+options['year'][0]+options['branch'][0], 0, 100)
             elif options['diploma']:
                 self.update_db('1MS'+options['year'][0]+options['branch'][0], 400, 500)
             else:
