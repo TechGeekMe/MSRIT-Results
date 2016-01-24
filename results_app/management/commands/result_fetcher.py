@@ -123,7 +123,7 @@ def fetch_result(usn):
         #If it is an elective
         else:
             fs.first_year = False
-        if fs.branch_code in ['MB', 'MC']:
+        if fr.branch_code in ['MB', 'MC', 'AR']:
             fs.first_year = False
         fs.semester = sem;
         fs.subject_name = cols[2].get_text()
