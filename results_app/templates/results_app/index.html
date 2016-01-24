@@ -54,42 +54,8 @@
         </div>
         <div id="collapse-three" class="panel-collapse collapse in">
             <div class="panel-body">
-                <form role="form" class="form-horizontal" action="{% url 'results_app:sem_results' %}" method="post">
+                <form role="form" class="form-horizontal" action="{% url 'results_app:get_sem_results' %}" method="get">
                     {% csrf_token %}
-                    <input type="hidden" name="sort" value="sgpa">
-                    <div class="form-group">
-                        <label for="semesters" class="control-label col-xs-3">Semester:</label>
-                        <div class="col-sm-9">
-
-                        <div class="btn-group btn-group-justified" data-toggle="buttons" id="semesters">
-                            <label class="btn btn-primary">
-                                <input type="radio" name="semester" required value="1" />1
-                            </label>
-                            <label class="btn btn-primary ">
-                                <input type="radio" name="semester" value="2" />2
-                            </label>
-                            <label class="btn btn-primary">
-                                <input type="radio" name="semester" value="3" />3
-                            </label>
-                            <label class="btn btn-primary">
-                                <input type="radio" name="semester" value="4" />4
-                            </label>
-                            <label class="btn btn-primary">
-                                <input type="radio" name="semester" value="5" />5
-                            </label>
-                            <label class="btn btn-primary">
-                                <input type="radio" name="semester" value="6" />6
-                            </label>
-                            <label class="btn btn-primary">
-                                <input type="radio" name="semester" value="7" />7
-                            </label>
-                            <label class="btn btn-primary">
-                                <input type="radio" name="semester" value="8" />8
-                            </label>
-
-                        </div>
-                        </div>
-                    </div>
                     <div class="form-group">
                         <label for="branch" class="control-label col-sm-3">Branch:</label>
                         <div class="btn-group col-sm-8" data-toggle="buttons" id="branch">
@@ -130,11 +96,50 @@
                                 <input type="radio" name="branch" value="BT" />BT
                             </label>
                             <label class="btn btn-primary col-xs-3 col-sm-2">
-                                <input type="radio" name="branch" value="AT" />AT
+                                <input type="radio" id="at" name="branch" value="AT" />AT
                             </label>
                             <label class="btn btn-primary col-xs-3 col-sm-2">
                                 <input type="radio" name="branch" value="MC" />MCA
                             </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="semesters" class="control-label col-xs-3">Semester:</label>
+                        <div class="col-sm-9">
+
+                        <div class="btn-group btn-group-justified" data-toggle="buttons" id="semesters">
+                            <label class="btn btn-primary">
+                                <input type="radio" name="semester" required value="1" />1
+                            </label>
+                            <label class="btn btn-primary ">
+                                <input type="radio" name="semester" value="2" />2
+                            </label>
+                            <label class="btn btn-primary">
+                                <input type="radio" name="semester" value="3" />3
+                            </label>
+                            <label class="btn btn-primary">
+                                <input type="radio" name="semester" value="4" />4
+                            </label>
+                            <label class="btn btn-primary">
+                                <input type="radio" name="semester" value="5" />5
+                            </label>
+                            <label class="btn btn-primary">
+                                <input type="radio" name="semester" value="6" />6
+                            </label>
+                            <label class="btn btn-primary">
+                                <input type="radio" name="semester" value="7" />7
+                            </label>
+                            <label class="btn btn-primary">
+                                <input type="radio" name="semester" value="8" />8
+                            </label>
+                            <label class="btn btn-primary at-sem">
+                                <input type="radio" name="semester" value="9" />9
+                            </label>
+                            <label class="btn btn-primary at-sem">
+                                <input type="radio" name="semester" value="10" />10
+                            </label>
+
+                        </div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -151,9 +156,8 @@
         </div>
         <div id="collapse-four" class="panel-collapse collapse in">
             <div class="panel-body">
-                <form role="form" class="form-horizontal" action="{% url 'results_app:subject_results' %}" method="post">
+                <form role="form" class="form-horizontal" action="{% url 'results_app:get_subject_results' %}" method="get">
                     {% csrf_token %}
-                    <input type="hidden" name="sort" value="grade">
                     <div class="form-group">
                         <label for="department" class="control-label col-sm-3">Department:</label>
                         <div class="btn-group col-sm-8" data-toggle="buttons" id="department">
@@ -212,7 +216,7 @@
                         <div class="form-group">
                             <label for="fybranch" class="control-label col-sm-3">Branch:</label>
                             <div class="btn-group col-sm-8" data-toggle="buttons" id="fybranch">
-                                <input type="radio" id="dummy" name="fybranch" value="" style="display:none;"/>
+                                <input type="radio" id="dummy" name="fybranch" value="NO" style="display:none;"/>
                                 <label class="btn btn-primary col-xs-3 col-sm-2">
                                     <input type="radio" name="fybranch" value="CS" id="fycs" />CSE
                                 </label>
@@ -279,17 +283,24 @@
             $(document).ready(function(){
                 $("input").prop('checked', false);
                 $("#first-year-subjects").hide();
-
-
+                $(".at-sem").hide();
             });
+            $("input[name=branch]").change(function(){
+                if($('#at').is(':checked')) {
+                    $('.at-sem').show()
+                }
+                else {
+                    $('.at-sem').hide()
+                }
+            })
             $("input[name=department]").change(function(){
                 if ($('#first-year').is(':checked')) {
-                    $("#dummy").prop('checked', false);
+                    $('#dummy').prop('checked', false);
                     $('#first-year-subjects').show();
                     $('#fycs').prop('required', true);
                 }
                 else {
-                    $("#dummy").prop('checked', true);
+                    $('#dummy').prop('checked', true);
                     $('#first-year-subjects').hide();
                     $('#fycs').prop('required', false);
                 }

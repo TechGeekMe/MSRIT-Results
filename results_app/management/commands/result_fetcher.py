@@ -1,8 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 import re
-from results_app.models import Student2, Result2, Subject2
-from django.core.exceptions import ObjectDoesNotExist
 
 class FetchedSubject:
     def __init__(self):
@@ -16,11 +14,11 @@ class FetchedSubject:
     def __unicode__(self):
         return self.course_code + self.subject_name + str(self.credits_registered)\
                + str(self.credits_earned) + self.grade               
-    def __str__(self):          
+    def __str__(self):        
         return unicode(self).encode('utf-8')
         
 
-class FetchedResult():
+class FetchedResult:
     def __init__(self):
         self.usn = None
         self.name = None
@@ -43,36 +41,86 @@ class FetchedResult():
 
 
 def fetch_result(usn):
-    try:
-        s = Student2.objects.using('jan2015').get(usn=usn)
-    except ObjectDoesNotExist:
-        return None
-    fr = FetchedResult()
-    fr.usn = usn
-    fr.department = s.department
-    fr.name = s.name
-    fr.branch_code = usn[5:7] if usn[5:7] != 'EI' else 'IT'
+    
+    #Get html page
+    
+    payload = {'usn': usn, 'option': 'com_examresult', 'task': 'getResult'}
+    r = requests.post("http://exam.msrit.edu/index.php", data=payload)
+    data = r.text
+    
+    # Feed html to BeautifulSoup
 
-    r = s.result2
-    fr.credits_registered = r.credits_registered
-    fr.credits_earned = r.credits_earned
-    fr.sgpa = r.sgpa
-    fr.cgpa = r.cgpa
+    soup = BeautifulSoup(data)
+    sub_tables = soup.find_all("table")
+    fr = FetchedResult()
+    
+    #Check if usn exists
+
+    row = sub_tables[0]
+    row_data = row.find_all('td')
+    error_message = row_data[7].get_text()
+    if error_message.startswith('Oops') or error_message.startswith('Your'):
+        return None
+
+    # Extracting name and usn
+    
+    row = sub_tables[3]
+    row_data = row.find_all('td')
+    fr.name = row_data[2].get_text()
+    fr.usn = row_data[3].get_text()
+    fr.usn = re.sub(r'^USN : ', '', fr.usn)
+    fr.usn = fr.usn.upper()
+    fr.branch_code = fr.usn[5:7] if fr.usn[5:7] != 'EI' else 'IT'
+
+    # Extracting department
+    
+    row = sub_tables[5]
+    row_data = row.find_all('td')
+    fr.department = row_data[3].get_text()
+    fr.department = re.sub(u'^\u00a0*Department : ', '', fr.department)
+
+    # Extracting credits required, sgpa and cgpa
+    
+    row = sub_tables[7]
+    
+    row_data = row.find_all("span")
+    fr.credits_registered = int(row_data[1].get_text())
+    fr.credits_earned = int(row_data[3].get_text())
+    fr.sgpa = row_data[5].get_text()
+    
+    # Checking SGPA for TAL to convert to float
+    if fr.sgpa == "TAL":
+        fr.sgpa = "0"
+    fr.sgpa = float(fr.sgpa)
+    
+    fr.cgpa = row_data[7].get_text()
+    
+    # Checking CGPA for TAL to convert to float
+    if fr.cgpa == "TAL":
+        fr.cgpa = "0"
+    fr.cgpa = float(fr.cgpa)
+
+    # Extracting result of each of subject
 
     subject_sem = {}
-    
-    for s in r.subject2_set.all():
+    first_iteration = True
+    for row in sub_tables[10].find_all('tr'):
+        if first_iteration:
+            first_iteration = False
+            continue
+        cols = row.find_all('td')
+        # Detect last row
+        if cols[1].get_text() == u'\xa0':
+            break;
         fs = FetchedSubject()
-        fs.course_code = s.course_code
-        fs.subject_name = s.subject_name
-        fs.credits_registered = s.credits_registered
-        fs.credits_earned = s.credits_earned
-        fs.grade = s.grade
-        
+        fs.course_code = cols[1].get_text()
         sem = int(re.match(r'[A-Z]+\d', fs.course_code).group()[-1])
         subject_sem[sem] = subject_sem.get(sem, 0) + 1
         fs.semester = sem;
-        
+        fs.subject_name = cols[2].get_text()
+        fs.credits_registered = int(float(cols[3].get_text()))
+        fs.credits_earned = int(cols[4].get_text())
+        fs.grade = cols[5].get_text()
         if fs.grade == 'S':
             fs.grade_point = 10
         elif fs.grade == 'A':
@@ -87,9 +135,8 @@ def fetch_result(usn):
             fs.grade_point = 4
         else:
             fs.grade_point = 0
-
         fr.subjects.append(fs)
 
     fr.semester = max(subject_sem, key=subject_sem.get)
-
+    
     return fr 
