@@ -10,6 +10,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         if options['branch']:
+            if option['branch'] == 'MCA':
+                self.update_db_mca('1MS'+options['year'][0]+options['branch'][0], 0, 70)
             if options['diploma']:
                 self.update_db('1MS'+options['year'][0]+options['branch'][0], 400, 500)
             else:
@@ -27,6 +29,20 @@ class Command(BaseCommand):
             if bad_usns > 5:
                 return self.stdout.write("Over! Stopped at " + str(usn))
             usn = usn_base + str(i).zfill(3)
+            try:
+                add_result.add_usn(usn)
+                bad_usns = 0
+            except ValueError:
+                bad_usns += 1
+
+    def update_db_mca(self, usn_base, first_usn, last_usn):
+        bad_usns = 0
+        first_usn = int(first_usn)
+        last_usn = int(last_usn)
+        for i in range(first_usn, last_usn):
+            if bad_usns > 5:
+                return self.stdout.write("Over! Stopped at " + str(usn))
+            usn = usn_base + str(i).zfill(2)
             try:
                 add_result.add_usn(usn)
                 bad_usns = 0
