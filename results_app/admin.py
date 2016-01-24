@@ -22,7 +22,7 @@ class ResultAdmin(admin.ModelAdmin):
     
 class SubjectListAdmin(admin.ModelAdmin):
     list_display = ('course_code', 'subject_name', 'department_code', 'first_year')
-    search_fields = ['branch_code']
+    search_fields = ['course_code']
 
 class SubjectAdmin(admin.ModelAdmin):
     list_display = ('usn', 'course_code', 'subject_name')
