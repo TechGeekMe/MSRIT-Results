@@ -34,6 +34,6 @@ def put_result(s, r):
             subject.save()
             if not SubjectList.objects.filter(pk=sub.course_code).exists():
                 subjectlist = SubjectList(course_code = sub.course_code,
-                                          subject_name=sub.subject_name, department_code=sub.course_code[:2], first_year=True if sub.semester <= 2 else False)
+                                          subject_name=sub.subject_name, department_code=sub.course_code[:2], first_year=True if sub.semester <= 2 and not re.match(r'^[A-Z][A-Z]+E', sub.course_code) else False)
                 subjectlist.save()
     
