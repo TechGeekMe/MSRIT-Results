@@ -10,8 +10,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         if options['branch']:
-            if options['branch'][0] == 'MCA':
-                self.update_db_mca('1MS'+options['year'][0]+options['branch'][0], 0, 70)
+            if options['branch'][0] == 'MCA' or options['branch'][0] == 'MBA':
+                self.update_db_mca_or_mba('1MS'+options['year'][0]+options['branch'][0], 0, 70)
             elif options['diploma']:
                 self.update_db('1MS'+options['year'][0]+options['branch'][0], 400, 500)
             else:
@@ -35,7 +35,7 @@ class Command(BaseCommand):
             except ValueError:
                 bad_usns += 1
 
-    def update_db_mca(self, usn_base, first_usn, last_usn):
+    def update_db_mca_or_mba(self, usn_base, first_usn, last_usn):
         bad_usns = 0
         first_usn = int(first_usn)
         last_usn = int(last_usn)
