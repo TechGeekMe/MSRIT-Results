@@ -57,7 +57,7 @@ def fetch_result(usn):
         fr = FetchedResult()
         
         #Check if usn exists
-            row = sub_tables[0]
+        row = sub_tables[0]
             
         row_data = row.find_all('td')
         error_message = row_data[7].get_text()
