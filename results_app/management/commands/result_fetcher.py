@@ -99,7 +99,7 @@ def fetch_result(usn):
         fr.cgpa = row_data[7].get_text()
         
         # Checking CGPA for TAL to convert to float
-        if fr.cgpa == "TAL" or fr.cgpa == ""::
+        if fr.cgpa == "TAL" or fr.cgpa == "":
             fr.cgpa = "0"
         fr.cgpa = float(fr.cgpa)
 
