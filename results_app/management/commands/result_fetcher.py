@@ -42,7 +42,6 @@ class FetchedResult:
 
 
 def fetch_result(usn):
-<<<<<<< HEAD
     try:
         #Get html page
         
@@ -51,22 +50,6 @@ def fetch_result(usn):
         data = r.text
         
         # Feed html to BeautifulSoup
-=======
-    
-    #Get html page
-    print usn
-    payload = {'usn': usn, 'option': 'com_examresult', 'task': 'getResult'}
-    r = requests.post("http://exam.msrit.edu/index.php", data=payload)
-    data = r.text
-    
-    # Feed html to BeautifulSoup
-
-    soup = BeautifulSoup(data)
-    sub_tables = soup.find_all("table")
-    fr = FetchedResult()
-    
-    #Check if usn exists
->>>>>>> origin/master
 
         soup = BeautifulSoup(data)
         sub_tables = soup.find_all("table")
