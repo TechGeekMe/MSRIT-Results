@@ -1,7 +1,7 @@
 from os import system
 from time import sleep
 import result_fetcher
-while (result_fetcher.fetch_results('1MS13CS001') == None):
+while (result_fetcher.fetch_result('1MS13CS001') == None):
     print 'Not yet out'
     sleep(5)
 print 'Results out'
