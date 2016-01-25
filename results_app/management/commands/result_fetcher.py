@@ -117,7 +117,7 @@ def fetch_result(usn):
                 break;
             fs = FetchedSubject()
             fs.course_code = cols[1].get_text()
-            sem = int(re.match(r'[A-Z]+\d', fs.course_code).group()[-1])
+            sem = int(re.match(r'^[A-Z-]+\d', fs.course_code).group()[-1])
             fs.first_year = True if sem <= 2 else False
             # If it is not a elective
             if not re.match(r'^[A-Z][A-Z]+E', fs.course_code):
