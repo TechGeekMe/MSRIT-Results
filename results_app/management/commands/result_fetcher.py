@@ -117,9 +117,9 @@ def fetch_result(usn):
             fs = FetchedSubject()
             fs.course_code = cols[1].get_text()
             sem = int(re.match(r'^[A-Z-]+\d', fs.course_code).group()[-1])
-            csSub = re.match(r'^CS..\d', fs.course_code)
-            if (csSub):
-                sem = int(csSub.group()[-1])
+            # Special case for the new CS Dept naming scheme for 3rd Sem Jan 2016
+            if fs.course_code.starts_with('CS153'):
+                sem = 3
             fs.first_year = True if sem <= 2 else False
             # If it is not a elective
             if not re.match(r'^[A-Z][A-Z]+E', fs.course_code):
@@ -127,7 +127,7 @@ def fetch_result(usn):
             #If it is an elective
             else:
                 fs.first_year = False
-            if fr.branch_code in ['MB', 'MC', 'AR']:
+            if fr.branch_code in ['MB', 'MC', 'AT']:
                 fs.first_year = False
             fs.subject_name = cols[2].get_text()
             fs.credits_registered = int(float(cols[3].get_text()))
