@@ -118,7 +118,7 @@ def fetch_result(usn):
             fs.course_code = cols[1].get_text()
             sem = int(re.match(r'^[A-Z-]+\d', fs.course_code).group()[-1])
             # Special case for the new CS Dept naming scheme for 3rd Sem Jan 2016
-            if fs.course_code.starts_with('CS153'):
+            if fs.course_code.startswith('CS153'):
                 sem = 3
             fs.first_year = True if sem <= 2 else False
             # If it is not a elective
