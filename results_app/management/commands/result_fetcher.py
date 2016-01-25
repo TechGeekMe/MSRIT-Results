@@ -1,4 +1,5 @@
 import requests
+import traceback
 from bs4 import BeautifulSoup
 import re
 
@@ -129,7 +130,7 @@ def fetch_result(usn):
             fs.semester = sem;
             fs.subject_name = cols[2].get_text()
             fs.credits_registered = int(float(cols[3].get_text()))
-            fs.credits_earned = int(cols[4].get_text())
+            fs.credits_earned = int(float(cols[4].get_text()))
             fs.grade = cols[5].get_text()
             if fs.grade == 'S':
                 fs.grade_point = 10
@@ -150,7 +151,9 @@ def fetch_result(usn):
         fr.semester = max(subject_sem, key=subject_sem.get)
         
         return fr
-    
-    except:
+    except KeyboardInterrupt:
+        raise
+    except Exception:
+        traceback.print_exc()
         print 'Failed'
         return fetch_result(usn)
