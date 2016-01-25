@@ -42,6 +42,7 @@ class FetchedResult:
 
 
 def fetch_result(usn):
+    print usn
     try:
         #Get html page
         
