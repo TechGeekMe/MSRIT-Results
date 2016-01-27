@@ -1,5 +1,8 @@
 ﻿{% extends "results_app/base.html" %}
 {% block content %}
+<div class="pull-right">
+    <a href="{{ request.path }}analytics/" class="btn btn-success btn-lg">Analytics</a>
+</div>
 <div class="panel panel-default">
     <div class="panel-heading text-center">
         <h3>{{ subject_name }}</h3>

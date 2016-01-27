@@ -1,0 +1,27 @@
+{% extends "results_app/base.html" %}
+{% block content %}
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="table-responsive">
+            <div style="text-decoration:none;">
+                <table class="table table-hover text-center">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Subject Grade</th>
+                            <th class="text-center">Number of students</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for grade in subject_grades %}
+                        <tr class="info">
+                            <td>{{ grade.grade }}</td>
+                            <td>{{ grade.num_of_students }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

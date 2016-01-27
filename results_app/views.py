@@ -8,6 +8,10 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from django.conf import settings
 
+from django.template import RequestContext
+
+from django.db.models import Count 
+
 from .models import Student, Result, Subject, SubjectList
 
 from datetime import date
@@ -150,9 +154,13 @@ def subject_results(request, course_code, fybranch='NO'):
     else:
         subjects = subjects.order_by('-grade_point')
 
-    dic = {'course_code': course_code, 'subject_name': subjects[0].subject_name, 'subjects': subjects, 'sort': sort, 'fybranch': fybranch}
+    dic = {'course_code': course_code, 'subject_name': subjects[0].subject_name, 'subjects': subjects, 'sort': sort}
         
-    return render(request, 'results_app/subject_results.html', dic)
+    return render(request, 'results_app/subject_results.html', dic,  context_instance=RequestContext(request))
+
+def subject_analytics(request, course_code):
+    subject_grades = Subject.objects.filter(course_code=course_code).order_by('-grade_point').values('grade').annotate(num_of_students=Count('id'))
+    return render(request, 'results_app/subject_analytics.html', {'subject_grades': subject_grades})   
 
 def custom_404(request):
     return render(request, 'results_app/404.html')
