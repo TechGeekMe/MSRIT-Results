@@ -160,7 +160,7 @@ def subject_results(request, course_code, fybranch='NO'):
 
 def subject_analytics(request, course_code):
     subject_grades = Subject.objects.filter(course_code=course_code, result__date=date(request.session['term']['year'], request.session['term']['month'], 1)).order_by('-grade_point').values('grade').annotate(num_of_students=Count('id'))
-    return render(request, 'results_app/subject_analytics.html', {'subject_grades': subject_grades})   
+    return render(request, 'results_app/subject_analytics.html', {'subject_grades': subject_grades, 'course_code': course_code})   
 
 def custom_404(request):
     return render(request, 'results_app/404.html')
