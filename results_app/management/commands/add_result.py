@@ -10,6 +10,8 @@ def add_usn(usn):
         s = Student.objects.get(usn=usn)
         if not Result.objects.filter(student=s, date=date(settings.TERM_YEAR, settings.TERM_MONTH, 1)).exists():
             r = result_fetcher.fetch_result(usn)
+            if not r:
+                return
             # Because department changes after first year
             dept = r.department
             s.department = dept
