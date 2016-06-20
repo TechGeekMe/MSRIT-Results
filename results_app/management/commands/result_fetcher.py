@@ -116,7 +116,7 @@ def fetch_result(usn):
                 break;
             fs = FetchedSubject()
             fs.course_code = cols[1].get_text()
-            sem = int(re.match(r'^[A-Z-]+\d', fs.course_code).group()[-1])
+            sem = int(re.match(r'^(\d\d)?[A-Z-]+\d', fs.course_code).group()[-1])
             # Special case for the new CS Dept naming scheme for 3rd Sem Jan 2016
             if fs.course_code.startswith('CS153'):
                 sem = 3
