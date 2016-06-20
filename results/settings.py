@@ -103,9 +103,9 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 # Default term
 
 TERM_YEAR = 2016
-TERM_MONTH = 1
+TERM_MONTH = 6
 
-# Internationalization
+# Internationalizationettings.TERM_YEAR
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
