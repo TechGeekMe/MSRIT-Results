@@ -82,7 +82,7 @@ DATABASES = {
         'NAME': 'students',
         'USER': 'root',
         'PASSWORD': credentials.mysql['password'],
-        'HOST': 'resultsdb.cninslv9ojgr.us-west-2.rds.amazonaws.com',
+        'HOST': credentials.mysql['host'],
         'PORT': '3306'
         
     }
@@ -124,7 +124,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 AWS_STORAGE_BUCKET_NAME = 'msrit-results'
-AWS_ACCESS_KEY_ID = 'AKIAINEFMJD73IQZW5UA'
+AWS_ACCESS_KEY_ID = credentials.aws['access_key_id']
 AWS_SECRET_ACCESS_KEY = credentials.aws['secret_access_key']
 
 # Tell django-storages that when coming up with the URL for an item in S3 storage, keep
