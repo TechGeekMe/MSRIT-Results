@@ -12,14 +12,14 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-
+import credentials
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '***REMOVED***'
+SECRET_KEY = credentials.django['secret_key']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -81,7 +81,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'students',
         'USER': 'root',
-        'PASSWORD': '***REMOVED***',
+        'PASSWORD': credentials.mysql['password'],
         'HOST': 'resultsdb.cninslv9ojgr.us-west-2.rds.amazonaws.com',
         'PORT': '3306'
         
@@ -125,7 +125,7 @@ USE_TZ = True
 
 AWS_STORAGE_BUCKET_NAME = 'msrit-results'
 AWS_ACCESS_KEY_ID = 'AKIAINEFMJD73IQZW5UA'
-AWS_SECRET_ACCESS_KEY = '***REMOVED***'
+AWS_SECRET_ACCESS_KEY = credentials.aws['secret_access_key']
 
 # Tell django-storages that when coming up with the URL for an item in S3 storage, keep
 # it simple - just use this domain plus the path. (If this isn't set, things get complicated).
