@@ -5,7 +5,7 @@ MSRIT Results
 This project is a web application for **M S Ramaiah Institute of Technology** results. The reason we started working on this was the inefficiency of the official college website. The functionalities provided by by the college website was only to search by the USN of the student. We at TechGeekMe wanted to allow users to search by any parameter as well as have access to previous semester results at all times.
 
 
-----------
+
 ## Project Breakup ##
 The project consists of two parts:
 
@@ -15,7 +15,7 @@ Scrape tool
 Web application
 :   The web application is the portal for the users to access the data and retrieve the results
 
----------
+
 ##Technologies used ##
 
  - Python 2.7
@@ -24,7 +24,6 @@ Web application
  - Bootstrap 3
 
 
-----------
 Sources
 ----------
 - [Python 2.7][1]
