@@ -27,7 +27,7 @@ Web application
 Sources
 ----------
 - [Python 2.7][1]
-- [Django 1.10.4][2]
+- [Django 1.8][2]
 - [Bootstrap 3][3]
 - [BeautifulSoup 4.5][4]
 - [MSRIT Results][5]
