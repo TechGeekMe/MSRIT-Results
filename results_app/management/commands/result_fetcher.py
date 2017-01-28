@@ -45,8 +45,8 @@ def fetch_result(usn):
     print usn
     try:
         #Get html page
-        cookies = {'3e84ce0de6b7d1eb79699e2a6adfb3a1':	'5kflahkjg9kmqtopf54kt2mv44'}
-        payload = {'usn': usn, 'option': 'com_examresult', 'task': 'getResult', 'osolCatchaTxt': '65P7G', 'osolCatchaTxtInst': '0'}
+        cookies = {'3e84ce0de6b7d1eb79699e2a6adfb3a1':	'd232eofo9fkq97cvv4hl57ltp5'}
+        payload = {'usn': usn, 'option': 'com_examresult', 'task': 'getResult', 'osolCatchaTxt': '2X3YF', 'osolCatchaTxtInst': '0'}
         r = requests.post("http://exam.msrit.edu/index.php", data=payload, cookies=cookies)
         data = r.text
         #print data
