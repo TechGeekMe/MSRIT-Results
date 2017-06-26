@@ -120,10 +120,12 @@
     {% block scripts %}{% endblock %}
     <script>
         $(".termselector").click(function() {
-            $('<form method="post" action="{% url 'results_app:index' %}" >' +
+            var form = $('<form method="post" action="{% url 'results_app:index' %}" >' +
             '<input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />' +
             '<input type="hidden" name="term" value="' + $(this).attr('id')+ '">' +
-            '</form>').submit();
+            '</form>');
+            $(document.body).append(form);
+            form.submit();
         });
     </script>
 </body>
